@@ -21,6 +21,14 @@
   max-width: 600px;
 }
 
+.welcome-message {
+  margin: 10px 0;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
 .option-button {
   margin: 10px 0;
   padding: 10px 20px;
@@ -29,12 +37,77 @@
   background-color: var(--header-bg-color);
   color: white;
   cursor: pointer;
-  font-size: 16px;
   font-weight: bold;
+  font-size: 16px;
   width: 100%;
 }
 
 .option-button:hover {
   background-color: var(--button-hover-bg-color);
   color: white;
+}
+
+.option-button.cancel {
+  background-color: var(--cancel-button-bg-color);
+}
+
+.option-button.cancel:hover {
+  background-color: var(--cancel-button-hover-bg-color);
+}
+
+.session-label {
+  margin: 10px 0;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
+.session-input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.username-label {
+  margin: 10px 0;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
+.username-input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
