@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex-direction: column;
 }
 
 .card {
@@ -40,6 +41,8 @@
   font-weight: bold;
   font-size: 16px;
   width: 100%;
+  display: inline-block;
+  /* Ensure buttons are inline-block */
 }
 
 .option-button:hover {
@@ -137,6 +140,7 @@
   font-size: 16px;
   font-weight: bold;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .card-option:hover {
@@ -147,4 +151,40 @@
 .card-option.selected {
   border-color: var(--header-bg-color);
   box-shadow: 0 0 10px var(--header-bg-color);
+}
+
+.user-list {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.username {
+  font-weight: bold;
+  color: black;
+}
+
+.selected-card {
+  font-size: 16px;
+  color: rgb(165, 165, 165);
+}
+
+.average-estimate {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: black;
 }

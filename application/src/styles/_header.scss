@@ -6,10 +6,49 @@
   background-color: var(--header-bg-color);
   padding: 10px 0;
   font-family: 'Arial', sans-serif;
-  font-size: 24px;
+  font-size: 35px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   font-weight: bold;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user-icon {
+  margin-right: 8px;
+}
+
+.userid {
+  font-size: 18px;
+  color: white;
+}
+
+.share-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.share-icon {
+  margin-right: 5px;
 }

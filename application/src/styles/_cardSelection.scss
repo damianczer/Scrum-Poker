@@ -1,0 +1,31 @@
+.card-selection-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 70vh;
+  justify-content: center;
+}
+
+.option-button {
+  margin: 10px 5px;
+  width: calc(50% - 10px);
+}
+
+.option-button.reset {
+  background-color: var(--cancel-button-bg-color);
+}
+
+.option-button.reset:hover {
+  background-color: var(--cancel-button-hover-bg-color);
+}
