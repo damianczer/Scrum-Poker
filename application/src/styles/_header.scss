@@ -8,6 +8,10 @@
   font-family: 'Arial', sans-serif;
   font-size: 35px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 720px;
 }
 
 .logo {
@@ -24,13 +28,15 @@ a {
   display: flex;
   align-items: center;
   position: absolute;
-  left: 20px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .user-icon {
   margin-right: 8px;
+  font-size: 32px;
+  color: white;
 }
 
 .userid {
@@ -39,16 +45,30 @@ a {
 }
 
 .share-button {
-  background: none;
+  background-color: #33409b;
   border: none;
   color: white;
   cursor: pointer;
   font-size: 16px;
   display: flex;
   align-items: center;
-  margin-left: auto;
+  margin-right: 10px;
+  width: max-content;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.share-button:hover{
+  background-color: #293592;
 }
 
 .share-icon {
   margin-right: 5px;
+}
+
+.share{
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
 }

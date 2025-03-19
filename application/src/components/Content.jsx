@@ -4,6 +4,8 @@ import CardSelection from './CardSelection';
 import Header from './Header';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 function Content() {
   const [isJoining, setIsJoining] = useState(false);
@@ -46,12 +48,14 @@ function Content() {
     setIsJoining(false);
     setIsCreating(false);
     setIsUsernameEntered(true);
-  };
+    setErrorMessage('');
+  }
 
   const handleCancelGame = () => {
     setIsJoining(false);
     setIsCreating(false);
     setIsUsernameEntered(false);
+    setErrorMessage('');
   };
 
   const handleUsernameSubmit = () => {
@@ -154,22 +158,23 @@ function Content() {
 
   return (
     <div className="content">
-      <Header username={isUsernameEntered ? username : ''} onShare={isSessionCreated ? handleShareSession : null} /> {/* Pass username and onShare to Header */}
+      <Header username={isUsernameEntered ? username : ''} onShare={isSessionCreated ? handleShareSession : null} />
       {!isCardSelectionVisible ? (
         <div className="card fade-in">
           {!isUsernameEntered ? (
             <>
-              <label htmlFor="username" className="username-label">Enter your username</label>
+              <FontAwesomeIcon icon={faUserCircle} className="user-icon fade-in" style={{ fontSize: '3em', marginBottom: '10px', color: '#b3b3b3' }} />
+              <label htmlFor="username" className="username-label fade-in">Enter your username</label>
               <input
                 type="text"
                 id="username"
                 placeholder="username"
-                className="username-input"
+                className="username-input fade-in"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              {errorMessage && <div className="error-message">{errorMessage}</div>}
-              <button className="option-button" onClick={handleUsernameSubmit}>Submit</button>
+              {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
+              <button className="option-button fade-in" onClick={handleUsernameSubmit}>Submit</button>
             </>
           ) : (
             <>
@@ -190,7 +195,7 @@ function Content() {
                     value={sessionId}
                     onChange={(e) => setSessionId(e.target.value)}
                   />
-                  {errorMessage && <div className="error-message">{errorMessage}</div>}
+                  {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
                   <button className="option-button fade-in" onClick={handleJoinSessionSubmit}>Join</button>
                   <button className="option-button fade-in cancel" onClick={handleCancel}>Cancel</button>
                 </>
@@ -205,7 +210,7 @@ function Content() {
                     value={sessionName}
                     onChange={(e) => setSessionName(e.target.value)}
                   />
-                  {errorMessage && <div className="error-message">{errorMessage}</div>}
+                  {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
                   <button className="option-button fade-in" onClick={handleCreateSessionSubmit}>Create</button>
                   <button className="option-button fade-in cancel" onClick={handleCancel}>Cancel</button>
                 </>
