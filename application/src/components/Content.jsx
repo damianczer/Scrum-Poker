@@ -127,6 +127,10 @@ function Content({ language }) {
             setErrorMessage(t.sessionFull);
             return;
           }
+          if (users.some(user => user.name === username)) {
+            setErrorMessage(t.usernameExists);
+            return;
+          }
           const updatedUsers = [...users, { name: username, selectedCard: null }];
           await updateDoc(sessionRef, {
             users: updatedUsers,

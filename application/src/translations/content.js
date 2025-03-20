@@ -24,7 +24,8 @@ export const translations = {
     showCards: 'Show Cards',
     hidden: 'Hidden',
     cookiesConsent: 'By using this application, you agree to the use of cookies.',
-    chooseOption: 'Choose an option:'
+    chooseOption: 'Choose an option:',
+    usernameExists: 'Username already exists in the session.'
   },
   pl: {
     enterUsername: 'Wprowadź nazwę użytkownika:',
@@ -51,6 +52,7 @@ export const translations = {
     showCards: 'Pokaż karty',
     hidden: 'Ukryte',
     cookiesConsent: 'Korzystając z tej aplikacji, zgadzasz się na używanie ciasteczek.',
-    chooseOption: 'Wybierz opcję:'
+    chooseOption: 'Wybierz opcję:',
+    usernameExists: 'Taki użytkownik już istnieje w sesji.'
   }
 };
