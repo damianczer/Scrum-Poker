@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import '../styles/_content.scss';
-import CardSelection from './CardSelection';
 import Header from './Header';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faCookieBite } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faCookieBite, faHourglassHalf, faPlusCircle, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { translations } from '../translations/content';
+
+const CardSelection = lazy(() => import('./CardSelection'));
 
 function Content({ language }) {
   const [isJoining, setIsJoining] = useState(false);
@@ -20,7 +21,7 @@ function Content({ language }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [users, setUsers] = useState([]);
   const [isSessionCreated, setIsSessionCreated] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false); // New state variable
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const t = translations[language];
 
@@ -180,7 +181,7 @@ function Content({ language }) {
         <div className="card fade-in">
           {!isUsernameEntered ? (
             <>
-              <FontAwesomeIcon icon={faUserCircle} className="user-icon fade-in" style={{ fontSize: '3em', marginBottom: '10px', color: '#b3b3b3' }} />
+              <FontAwesomeIcon icon={faUserCircle} className="input-icon fade-in" />
               <label htmlFor="username" className="username-label fade-in">{t.enterUsername}</label>
               <input
                 type="text"
@@ -201,12 +202,15 @@ function Content({ language }) {
             <>
               {!isJoining && !isCreating ? (
                 <>
+                  <FontAwesomeIcon icon={faHourglassHalf} className="input-icon fade-in" />
+                  <p className="choose-option fade-in">{t.chooseOption}</p>
                   <button className="option-button fade-in" onClick={handleCreateSession}>{t.createSession}</button>
                   <button className="option-button fade-in" onClick={handleJoinSession}>{t.joinSession}</button>
                   <button className="option-button fade-in cancel" onClick={handleCancelGame}>{t.cancel}</button>
                 </>
               ) : isJoining ? (
                 <>
+                  <FontAwesomeIcon icon={faSignInAlt} className="input-icon fade-in" />
                   <label htmlFor="session-id" className="session-label fade-in">{t.joinSessionLabel}</label>
                   <input
                     type="text"
@@ -222,6 +226,7 @@ function Content({ language }) {
                 </>
               ) : (
                 <>
+                  <FontAwesomeIcon icon={faPlusCircle} className="input-icon fade-in" />
                   <label htmlFor="session-name" className="session-label fade-in">{t.createSessionLabel}</label>
                   <input
                     type="text"
@@ -240,15 +245,17 @@ function Content({ language }) {
           )}
         </div>
       ) : (
-        <CardSelection
-          selectedCard={selectedCard}
-          handleCardSelect={handleCardSelect}
-          users={users}
-          setUsers={setUsers}
-          sessionId={sessionId}
-          username={username}
-          language={language}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <CardSelection
+            selectedCard={selectedCard}
+            handleCardSelect={handleCardSelect}
+            users={users}
+            setUsers={setUsers}
+            sessionId={sessionId}
+            username={username}
+            language={language}
+          />
+        </Suspense>
       )}
     </div>
   );

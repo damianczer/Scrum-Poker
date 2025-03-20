@@ -1,3 +1,5 @@
+@use 'global' as *;
+
 .header {
   position: fixed;
   top: 0;
@@ -45,28 +47,15 @@ a {
 }
 
 .share-button {
-  background-color: var(--button-background-color);
-  border: none;
-  color: var(--text-white-color);
-  cursor: pointer;
-  font-size: 16px;
+  @include button-styles(var(--button-background-color), var(--button-hover-background-color));
   display: flex;
   align-items: center;
   margin-right: 10px;
   width: max-content;
-  border-radius: 5px;
   padding: 10px;
 }
 
-.share-button:hover{
-  background-color: var(--button-hover-background-color);
-}
-
-.share-icon {
-  margin-right: 5px;
-}
-
-.share{
+.share {
   position: absolute;
   right: 0px;
   top: 50%;

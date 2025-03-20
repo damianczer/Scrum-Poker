@@ -9,12 +9,12 @@ const Header = ({ username, onShare, language }) => {
 
   return (
     <header className="header">
-      <div className="logo" style={{ textAlign: 'center' }}>
+      <div className="logo">
         <a href="/">Scrum Poker</a>
       </div>
       {username && (
         <div className="user-info">
-          <FontAwesomeIcon icon={faUserCircle} className="user-icon" style={{ fontSize: '1em' }} />
+          <FontAwesomeIcon icon={faUserCircle} className="user-icon" />
           <span className="userid">{username}</span>
         </div>
       )}

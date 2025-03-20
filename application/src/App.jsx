@@ -1,9 +1,10 @@
-import './styles/App.scss';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Content from './components/Content';
-import React, { useState, useEffect } from 'react';
+import './App.scss';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Cookies from 'js-cookie';
+
+const Footer = lazy(() => import('./components/Footer'));
+const Header = lazy(() => import('./components/Header'));
+const Content = lazy(() => import('./components/Content'));
 
 function App() {
   const [language, setLanguage] = useState(() => {
@@ -19,9 +20,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header language={language} />
-      <Content language={language} />
-      <Footer setLanguage={setLanguage} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header language={language} />
+        <Content language={language} />
+        <Footer setLanguage={setLanguage} />
+      </Suspense>
     </div>
   );
 }

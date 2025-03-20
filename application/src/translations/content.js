@@ -1,6 +1,6 @@
 export const translations = {
   en: {
-    enterUsername: 'Enter your username',
+    enterUsername: 'Enter your username:',
     usernamePlaceholder: 'username',
     usernameErrorShort: 'Username must be at least 2 characters long.',
     usernameErrorLong: 'Username cannot be longer than 25 characters.',
@@ -8,12 +8,12 @@ export const translations = {
     createSession: 'Create session',
     joinSession: 'Join session',
     cancel: 'Cancel',
-    joinSessionLabel: 'Join session',
+    joinSessionLabel: 'Join session:',
     sessionIdPlaceholder: 'session ID',
     sessionIdError: 'Session ID cannot be empty.',
     sessionIdNotExist: 'Session ID does not exist.',
     sessionFull: 'Session is full. Maximum 10 users allowed.',
-    createSessionLabel: 'Create session',
+    createSessionLabel: 'Create session:',
     sessionNamePlaceholder: 'session name',
     sessionNameError: 'Session name must be at least 3 characters long.',
     errorCreatingSession: 'Error creating session: ',
@@ -23,10 +23,11 @@ export const translations = {
     hideCards: 'Hide Cards',
     showCards: 'Show Cards',
     hidden: 'Hidden',
-    cookiesConsent: 'By using this application, you agree to the use of cookies.'
+    cookiesConsent: 'By using this application, you agree to the use of cookies.',
+    chooseOption: 'Choose an option:'
   },
   pl: {
-    enterUsername: 'Wprowadź nazwę użytkownika',
+    enterUsername: 'Wprowadź nazwę użytkownika:',
     usernamePlaceholder: 'nazwa użytkownika',
     usernameErrorShort: 'Nazwa użytkownika musi mieć co najmniej 2 znaki.',
     usernameErrorLong: 'Nazwa użytkownika nie może być dłuższa niż 25 znaków.',
@@ -34,12 +35,12 @@ export const translations = {
     createSession: 'Utwórz sesję',
     joinSession: 'Dołącz do sesji',
     cancel: 'Anuluj',
-    joinSessionLabel: 'Dołącz do sesji',
+    joinSessionLabel: 'Dołącz do sesji:',
     sessionIdPlaceholder: 'ID sesji',
     sessionIdError: 'ID sesji nie może być puste.',
     sessionIdNotExist: 'ID sesji nie istnieje.',
     sessionFull: 'Sesja jest pełna. Maksymalnie 10 użytkowników.',
-    createSessionLabel: 'Utwórz sesję',
+    createSessionLabel: 'Utwórz sesję:',
     sessionNamePlaceholder: 'nazwa sesji',
     sessionNameError: 'Nazwa sesji musi mieć co najmniej 3 znaki.',
     errorCreatingSession: 'Błąd podczas tworzenia sesji: ',
@@ -49,6 +50,7 @@ export const translations = {
     hideCards: 'Ukryj karty',
     showCards: 'Pokaż karty',
     hidden: 'Ukryte',
-    cookiesConsent: 'Korzystając z tej aplikacji, zgadzasz się na używanie ciasteczek.'
+    cookiesConsent: 'Korzystając z tej aplikacji, zgadzasz się na używanie ciasteczek.',
+    chooseOption: 'Wybierz opcję:'
   }
 };

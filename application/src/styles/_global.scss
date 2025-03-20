@@ -1,4 +1,5 @@
 :root {
+  --icon-color: #b3b3b3;
   --text-white-color: #ffffff;
   --text-black-color: #000000;
   --card-border-color: #ccc;
@@ -37,4 +38,55 @@
   --background-color: #f3d261;
   --button-background-color: #d5ba33;
   --button-hover-background-color: #e9cb37;
+}
+
+@mixin button-styles($bg-color, $hover-bg-color, $text-color: var(--text-white-color)) {
+  background-color: $bg-color;
+  color: $text-color;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  width: 350px;
+  display: inline-block;
+  &:hover {
+    background-color: $hover-bg-color;
+  }
+}
+
+@mixin fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@mixin card-styles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@mixin input-styles {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  width: 350px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

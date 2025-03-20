@@ -1,3 +1,5 @@
+@use 'global' as *;
+
 .card-selection-container {
   display: flex;
   justify-content: center;
@@ -6,26 +8,15 @@
 }
 
 .card-selection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid var(--card-border-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @include card-styles;
   width: 70vh;
   justify-content: center;
 }
 
 .option-button {
+  @include button-styles(var(--button-background-color), var(--button-hover-background-color));
   margin: 10px 5px;
-  width: calc(50% - 10px);
-}
-
-.option-button.reset {
-  background-color: var(--cancel-button-background-color);
-}
-
-.option-button.reset:hover {
-  background-color: var(--cancel-button-hover-background-color);
+  &.reset {
+    @include button-styles(var(--cancel-button-background-color), var(--cancel-button-hover-background-color));
+  }
 }

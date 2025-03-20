@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import Cookies from 'js-cookie';
 import '../styles/_footer.scss';
+import { translations } from '../translations/footer';
 
 const Footer = ({ setLanguage }) => {
   const currentYear = new Date().getFullYear();
@@ -16,35 +18,6 @@ const Footer = ({ setLanguage }) => {
     return settings.language || 'en';
   });
   const settingsRef = useRef(null);
-
-  const translations = {
-    en: {
-      language: 'Language:',
-      color: 'Color:',
-      english: 'English',
-      polish: 'Polish',
-      green: 'Green',
-      blue: 'Blue',
-      turquoise: 'Turquoise',
-      grey: 'Grey',
-      orange: 'Orange',
-      copyright: 'Copyright',
-      copyrightend: 'All Rights Reserved.'
-    },
-    pl: {
-      language: 'Język:',
-      color: 'Kolor:',
-      english: 'Angielski',
-      polish: 'Polski',
-      green: 'Zielony',
-      blue: 'Niebieski',
-      turquoise: 'Turkusowy',
-      grey: 'Szary',
-      orange: 'Pomarańczowy',
-      copyright: 'Prawa autorskie',
-      copyrightend: 'Wszystkie prawa zastrzeżone.'
-    }
-  };
 
   const t = translations[selectedLanguage];
 
@@ -99,6 +72,11 @@ const Footer = ({ setLanguage }) => {
 
   return (
     <footer className="footer">
+      <div className="social-icons">
+        <a href="https://www.linkedin.com/in/daczerw/" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faLinkedin} className="linkedin-icon" />
+        </a>
+      </div>
       <p>{t.copyright} &copy; {currentYear} Damian Czerwiński - {t.copyrightend}</p>
       <div className="settings" ref={settingsRef}>
         <FontAwesomeIcon icon={faCog} className="settings-icon" onClick={toggleSettings} />
