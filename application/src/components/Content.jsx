@@ -5,7 +5,8 @@ import Header from './Header';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faCookieBite } from '@fortawesome/free-solid-svg-icons';
+import { translations } from '../translations/content';
 
 function Content({ language }) {
   const [isJoining, setIsJoining] = useState(false);
@@ -20,59 +21,6 @@ function Content({ language }) {
   const [users, setUsers] = useState([]);
   const [isSessionCreated, setIsSessionCreated] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false); // New state variable
-
-  const translations = {
-    en: {
-      enterUsername: 'Enter your username',
-      usernamePlaceholder: 'username',
-      usernameErrorShort: 'Username must be at least 2 characters long.',
-      usernameErrorLong: 'Username cannot be longer than 25 characters.',
-      submit: 'Submit',
-      createSession: 'Create session',
-      joinSession: 'Join session',
-      cancel: 'Cancel',
-      joinSessionLabel: 'Join session',
-      sessionIdPlaceholder: 'session ID',
-      sessionIdError: 'Session ID cannot be empty.',
-      sessionIdNotExist: 'Session ID does not exist.',
-      sessionFull: 'Session is full. Maximum 10 users allowed.',
-      createSessionLabel: 'Create session',
-      sessionNamePlaceholder: 'session name',
-      sessionNameError: 'Session name must be at least 3 characters long.',
-      errorCreatingSession: 'Error creating session: ',
-      errorJoiningSession: 'Error joining session: ',
-      sessionIdCopied: 'Session ID copied to clipboard!',
-      resetVotes: 'Reset Votes',
-      hideCards: 'Hide Cards',
-      showCards: 'Show Cards',
-      hidden: 'Hidden'
-    },
-    pl: {
-      enterUsername: 'Wprowadź nazwę użytkownika',
-      usernamePlaceholder: 'nazwa użytkownika',
-      usernameErrorShort: 'Nazwa użytkownika musi mieć co najmniej 2 znaki.',
-      usernameErrorLong: 'Nazwa użytkownika nie może być dłuższa niż 25 znaków.',
-      submit: 'Zatwierdź',
-      createSession: 'Utwórz sesję',
-      joinSession: 'Dołącz do sesji',
-      cancel: 'Anuluj',
-      joinSessionLabel: 'Dołącz do sesji',
-      sessionIdPlaceholder: 'ID sesji',
-      sessionIdError: 'ID sesji nie może być puste.',
-      sessionIdNotExist: 'ID sesji nie istnieje.',
-      sessionFull: 'Sesja jest pełna. Maksymalnie 10 użytkowników.',
-      createSessionLabel: 'Utwórz sesję',
-      sessionNamePlaceholder: 'nazwa sesji',
-      sessionNameError: 'Nazwa sesji musi mieć co najmniej 3 znaki.',
-      errorCreatingSession: 'Błąd podczas tworzenia sesji: ',
-      errorJoiningSession: 'Błąd podczas dołączania do sesji: ',
-      sessionIdCopied: 'ID sesji skopiowane do schowka!',
-      resetVotes: 'Zresetuj głosy',
-      hideCards: 'Ukryj karty',
-      showCards: 'Pokaż karty',
-      hidden: 'Ukryte'
-    }
-  };
 
   const t = translations[language];
 
@@ -244,6 +192,10 @@ function Content({ language }) {
               />
               {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
               <button className="option-button fade-in" onClick={handleUsernameSubmit}>{t.submit}</button>
+              <div className="cookies-consent fade-in">
+                <FontAwesomeIcon icon={faCookieBite} className="cookie-icon" />
+                <span className="cookie-text">{t.cookiesConsent}</span>
+              </div>
             </>
           ) : (
             <>

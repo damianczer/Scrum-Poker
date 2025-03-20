@@ -205,3 +205,19 @@
 .averange-value {
   color: green;
 }
+
+.cookies-consent {
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.cookie-icon {
+  color: brown;
+  margin-right: 5px;
+}
+
+.cookie-text {
+  color: var(--text-black-color);
+  font-size: 14px;
+}

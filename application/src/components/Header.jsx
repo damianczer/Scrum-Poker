@@ -2,17 +2,9 @@ import React from 'react';
 import '../styles/_header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { translations } from '../translations/header';
 
 const Header = ({ username, onShare, language }) => {
-  const translations = {
-    en: {
-      shareSession: 'Share Session'
-    },
-    pl: {
-      shareSession: 'Udostępnij sesję'
-    }
-  };
-
   const t = translations[language];
 
   return (

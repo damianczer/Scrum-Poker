@@ -2,19 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import '../styles/_cardSelection.scss';
+import { translations } from '../translations/cardSelection';
 
 const UserList = ({ users, showCards, language }) => {
-  const translations = {
-    en: {
-      averangeEstimate: 'Averange Estimate:',
-      hidden: 'Hidden'
-    },
-    pl: {
-      averangeEstimate: 'Średnia ocena:',
-      hidden: 'Ukryte'
-    }
-  };
-
   const t = translations[language];
 
   const calculateaverange = (users) => {
@@ -50,19 +40,6 @@ const CardSelection = ({ selectedCard, handleCardSelect, users, sessionId, usern
   const [showCards, setShowCards] = useState(false);
   const [localUsers, setLocalUsers] = useState(users);
   const cards = ['?', '0.5', '1', '2', '3', '5', '8', '13'];
-
-  const translations = {
-    en: {
-      resetVotes: 'Reset Votes',
-      hideCards: 'Hide Cards',
-      showCards: 'Show Cards'
-    },
-    pl: {
-      resetVotes: 'Zresetuj głosy',
-      hideCards: 'Ukryj karty',
-      showCards: 'Pokaż karty'
-    }
-  };
 
   const t = translations[language];
 
