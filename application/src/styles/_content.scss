@@ -118,6 +118,14 @@
 .selected-card {
   font-size: 16px;
   color: rgb(165, 165, 165);
+  border-radius: 4px;
+  &.hidden {
+    background-color: transparent;
+  }
+}
+
+.check-icon {
+  color: green;
 }
 
 .averange-estimate {
@@ -139,7 +147,7 @@
 }
 
 .averange-value {
-  color: green;
+  color: var(--text-black-color);
 }
 
 .cookies-consent {

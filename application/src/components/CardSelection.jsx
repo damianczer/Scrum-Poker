@@ -3,6 +3,8 @@ import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import '../styles/_cardSelection.scss';
 import { translations } from '../translations/cardSelection';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const UserList = ({ users, showCards, language }) => {
   const t = translations[language];
@@ -15,6 +17,14 @@ const UserList = ({ users, showCards, language }) => {
     return validCards.length ? (sum / validCards.length).toFixed(2) : 'N/A';
   };
 
+  const getCardColor = (card) => {
+    if (card === '?') return 'black';
+    if (card >= 0.5 && card <= 3) return 'green';
+    if (card === '5') return 'orange';
+    if (card >= 8 && card <= 13) return 'red';
+    return 'inherit';
+  };
+
   const averangeEstimate = calculateaverange(users);
 
   return (
@@ -22,8 +32,11 @@ const UserList = ({ users, showCards, language }) => {
       {users.map((user, index) => (
         <div key={index} className="user">
           <span className="username">{user.name}</span>
-          <span className={`selected-card ${!showCards && user.selectedCard ? 'hidden' : ''}`}>
-            {showCards || !user.selectedCard ? user.selectedCard : t.hidden}
+          <span
+            className={`selected-card ${!showCards && user.selectedCard ? 'hidden' : ''}`}
+            style={{ color: showCards ? getCardColor(user.selectedCard) : 'inherit' }}
+          >
+            {showCards || !user.selectedCard ? user.selectedCard : <FontAwesomeIcon icon={faCheckCircle} className="check-icon" />}
           </span>
         </div>
       ))}
