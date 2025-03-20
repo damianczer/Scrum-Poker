@@ -175,7 +175,6 @@ function Content({ language }) {
 
   const handleShareSession = () => {
     navigator.clipboard.writeText(sessionId);
-    alert(t.sessionIdCopied);
   };
 
   return (

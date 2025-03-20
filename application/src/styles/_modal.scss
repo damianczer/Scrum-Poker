@@ -1,0 +1,27 @@
+.modal {
+  position: absolute;
+  top: 60px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  color: var(--text-white-color);
+  z-index: 1000;
+  text-align: center;
+  width: 260px;
+  right: 10px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.modal-content {
+  font-size: 12px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
