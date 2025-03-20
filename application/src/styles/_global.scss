@@ -1,10 +1,40 @@
 :root {
-  --text-color: #ffffff;
-  --header-bg-color: #606ef3;
-  --footer-bg-color: #606ef3;
+  --text-white-color: #ffffff;
+  --text-black-color: #000000;
   --card-border-color: #ccc;
-  --button-bg-color: #3149ce;
-  --button-hover-bg-color: #2c37d6;
-  --cancel-button-bg-color: #ff4d4d;
-  --cancel-button-hover-bg-color: #cc0000;
+  --background-color: #5f85c7;
+  --button-background-color: #4b69a1;
+  --button-hover-background-color: #567abb;
+  --cancel-button-background-color: #ff4d4d;
+  --cancel-button-hover-background-color: #cc0000;
+}
+
+[data-theme="green"] {
+  --background-color: #70c75f;
+  --button-background-color: #2f8b47;
+  --button-hover-background-color: #369e52;
+}
+
+[data-theme="turquoise"] {
+  --background-color: #65d5a0;
+  --button-background-color: #599f7c;
+  --button-hover-background-color: #498a69;
+}
+
+[data-theme="blue"] {
+  --background-color: #5f85c7;
+  --button-background-color: #4b69a1;
+  --button-hover-background-color: #567abb;
+}
+
+[data-theme="grey"] {
+  --background-color: #b3b3b3;
+  --button-background-color: #858585;
+  --button-hover-background-color: #949393;
+}
+
+[data-theme="orange"] {
+  --background-color: #f3d261;
+  --button-background-color: #d5ba33;
+  --button-hover-background-color: #e9cb37;
 }

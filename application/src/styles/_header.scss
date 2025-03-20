@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   text-align: center;
-  background-color: var(--header-bg-color);
+  background-color: var(--background-color);
   padding: 10px 0;
   font-family: 'Arial', sans-serif;
   font-size: 35px;
@@ -21,7 +21,7 @@
 
 a {
   text-decoration: none;
-  color: white;
+  color: var(--text-white-color);
 }
 
 .user-info {
@@ -36,18 +36,18 @@ a {
 .user-icon {
   margin-right: 8px;
   font-size: 32px;
-  color: white;
+  color: var(--text-white-color);
 }
 
 .userid {
   font-size: 18px;
-  color: white;
+  color: var(--text-white-color);
 }
 
 .share-button {
-  background-color: #33409b;
+  background-color: var(--button-background-color);
   border: none;
-  color: white;
+  color: var(--text-white-color);
   cursor: pointer;
   font-size: 16px;
   display: flex;
@@ -59,7 +59,7 @@ a {
 }
 
 .share-button:hover{
-  background-color: #293592;
+  background-color: var(--button-hover-background-color);
 }
 
 .share-icon {

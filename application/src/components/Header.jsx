@@ -3,7 +3,18 @@ import '../styles/_header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-const Header = ({ username, onShare }) => {
+const Header = ({ username, onShare, language }) => {
+  const translations = {
+    en: {
+      shareSession: 'Share Session'
+    },
+    pl: {
+      shareSession: 'Udostępnij sesję'
+    }
+  };
+
+  const t = translations[language];
+
   return (
     <header className="header">
       <div className="logo" style={{ textAlign: 'center' }}>
@@ -18,7 +29,7 @@ const Header = ({ username, onShare }) => {
       {onShare && (
         <div className="share">
           <button className="share-button" onClick={onShare}>
-            Share Session
+            {t.shareSession}
           </button>
         </div>
       )}

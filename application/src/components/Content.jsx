@@ -7,7 +7,7 @@ import { collection, addDoc, getDoc, doc, updateDoc, onSnapshot } from 'firebase
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-function Content() {
+function Content({ language }) {
   const [isJoining, setIsJoining] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [username, setUsername] = useState('');
@@ -19,6 +19,62 @@ function Content() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [users, setUsers] = useState([]);
   const [isSessionCreated, setIsSessionCreated] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false); // New state variable
+
+  const translations = {
+    en: {
+      enterUsername: 'Enter your username',
+      usernamePlaceholder: 'username',
+      usernameErrorShort: 'Username must be at least 2 characters long.',
+      usernameErrorLong: 'Username cannot be longer than 25 characters.',
+      submit: 'Submit',
+      createSession: 'Create session',
+      joinSession: 'Join session',
+      cancel: 'Cancel',
+      joinSessionLabel: 'Join session',
+      sessionIdPlaceholder: 'session ID',
+      sessionIdError: 'Session ID cannot be empty.',
+      sessionIdNotExist: 'Session ID does not exist.',
+      sessionFull: 'Session is full. Maximum 10 users allowed.',
+      createSessionLabel: 'Create session',
+      sessionNamePlaceholder: 'session name',
+      sessionNameError: 'Session name must be at least 3 characters long.',
+      errorCreatingSession: 'Error creating session: ',
+      errorJoiningSession: 'Error joining session: ',
+      sessionIdCopied: 'Session ID copied to clipboard!',
+      resetVotes: 'Reset Votes',
+      hideCards: 'Hide Cards',
+      showCards: 'Show Cards',
+      hidden: 'Hidden'
+    },
+    pl: {
+      enterUsername: 'Wprowadź nazwę użytkownika',
+      usernamePlaceholder: 'nazwa użytkownika',
+      usernameErrorShort: 'Nazwa użytkownika musi mieć co najmniej 2 znaki.',
+      usernameErrorLong: 'Nazwa użytkownika nie może być dłuższa niż 25 znaków.',
+      submit: 'Zatwierdź',
+      createSession: 'Utwórz sesję',
+      joinSession: 'Dołącz do sesji',
+      cancel: 'Anuluj',
+      joinSessionLabel: 'Dołącz do sesji',
+      sessionIdPlaceholder: 'ID sesji',
+      sessionIdError: 'ID sesji nie może być puste.',
+      sessionIdNotExist: 'ID sesji nie istnieje.',
+      sessionFull: 'Sesja jest pełna. Maksymalnie 10 użytkowników.',
+      createSessionLabel: 'Utwórz sesję',
+      sessionNamePlaceholder: 'nazwa sesji',
+      sessionNameError: 'Nazwa sesji musi mieć co najmniej 3 znaki.',
+      errorCreatingSession: 'Błąd podczas tworzenia sesji: ',
+      errorJoiningSession: 'Błąd podczas dołączania do sesji: ',
+      sessionIdCopied: 'ID sesji skopiowane do schowka!',
+      resetVotes: 'Zresetuj głosy',
+      hideCards: 'Ukryj karty',
+      showCards: 'Pokaż karty',
+      hidden: 'Ukryte'
+    }
+  };
+
+  const t = translations[language];
 
   useEffect(() => {
     if (sessionId) {
@@ -31,6 +87,18 @@ function Content() {
       return () => unsubscribe();
     }
   }, [sessionId]);
+
+  useEffect(() => {
+    if (isSubmitted) {
+      if (username.trim().length < 2) {
+        setErrorMessage(t.usernameErrorShort);
+      } else if (username.trim().length > 25) {
+        setErrorMessage(t.usernameErrorLong);
+      } else {
+        setErrorMessage('');
+      }
+    }
+  }, [username, language, isSubmitted, t.usernameErrorLong, t.usernameErrorShort]);
 
   const handleJoinSession = () => {
     setIsJoining(true);
@@ -59,10 +127,11 @@ function Content() {
   };
 
   const handleUsernameSubmit = () => {
+    setIsSubmitted(true);
     if (username.trim().length < 2) {
-      setErrorMessage('Username must be at least 2 characters long.');
+      setErrorMessage(t.usernameErrorShort);
     } else if (username.trim().length > 25) {
-      setErrorMessage('Username cannot be longer than 25 characters.');
+      setErrorMessage(t.usernameErrorLong);
     } else {
       setIsUsernameEntered(true);
       setErrorMessage('');
@@ -91,10 +160,10 @@ function Content() {
         });
         return () => unsubscribe();
       } catch (e) {
-        setErrorMessage('Error creating session: ' + e.message);
+        setErrorMessage(t.errorCreatingSession + e.message);
       }
     } else {
-      setErrorMessage('Session name must be at least 3 characters long.');
+      setErrorMessage(t.sessionNameError);
     }
   };
 
@@ -105,8 +174,8 @@ function Content() {
         const sessionSnap = await getDoc(sessionRef);
         if (sessionSnap.exists()) {
           const users = sessionSnap.data().users;
-          if (users.length >= 10) {
-            setErrorMessage('Session is full. Maximum 10 users allowed.');
+          if (users.length >= 8) {
+            setErrorMessage(t.sessionFull);
             return;
           }
           const updatedUsers = [...users, { name: username, selectedCard: null }];
@@ -125,13 +194,13 @@ function Content() {
           });
           return () => unsubscribe();
         } else {
-          setErrorMessage('Session ID does not exist.');
+          setErrorMessage(t.sessionIdNotExist);
         }
       } catch (e) {
-        setErrorMessage('Error joining session: ' + e.message);
+        setErrorMessage(t.errorJoiningSession + e.message);
       }
     } else {
-      setErrorMessage('Session ID cannot be empty.');
+      setErrorMessage(t.sessionIdError);
     }
   };
 
@@ -153,66 +222,66 @@ function Content() {
 
   const handleShareSession = () => {
     navigator.clipboard.writeText(sessionId);
-    alert('Session ID copied to clipboard!');
+    alert(t.sessionIdCopied);
   };
 
   return (
     <div className="content">
-      <Header username={isUsernameEntered ? username : ''} onShare={isSessionCreated ? handleShareSession : null} />
+      <Header username={isUsernameEntered ? username : ''} onShare={isSessionCreated ? handleShareSession : null} language={language} />
       {!isCardSelectionVisible ? (
         <div className="card fade-in">
           {!isUsernameEntered ? (
             <>
               <FontAwesomeIcon icon={faUserCircle} className="user-icon fade-in" style={{ fontSize: '3em', marginBottom: '10px', color: '#b3b3b3' }} />
-              <label htmlFor="username" className="username-label fade-in">Enter your username</label>
+              <label htmlFor="username" className="username-label fade-in">{t.enterUsername}</label>
               <input
                 type="text"
                 id="username"
-                placeholder="username"
+                placeholder={t.usernamePlaceholder}
                 className="username-input fade-in"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
-              <button className="option-button fade-in" onClick={handleUsernameSubmit}>Submit</button>
+              <button className="option-button fade-in" onClick={handleUsernameSubmit}>{t.submit}</button>
             </>
           ) : (
             <>
               {!isJoining && !isCreating ? (
                 <>
-                  <button className="option-button fade-in" onClick={handleCreateSession}>Create session</button>
-                  <button className="option-button fade-in" onClick={handleJoinSession}>Join session</button>
-                  <button className="option-button fade-in cancel" onClick={handleCancelGame}>Cancel</button>
+                  <button className="option-button fade-in" onClick={handleCreateSession}>{t.createSession}</button>
+                  <button className="option-button fade-in" onClick={handleJoinSession}>{t.joinSession}</button>
+                  <button className="option-button fade-in cancel" onClick={handleCancelGame}>{t.cancel}</button>
                 </>
               ) : isJoining ? (
                 <>
-                  <label htmlFor="session-id" className="session-label fade-in">Join session</label>
+                  <label htmlFor="session-id" className="session-label fade-in">{t.joinSessionLabel}</label>
                   <input
                     type="text"
                     id="session-id"
-                    placeholder="session ID"
+                    placeholder={t.sessionIdPlaceholder}
                     className="session-input fade-in"
                     value={sessionId}
                     onChange={(e) => setSessionId(e.target.value)}
                   />
                   {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
-                  <button className="option-button fade-in" onClick={handleJoinSessionSubmit}>Join</button>
-                  <button className="option-button fade-in cancel" onClick={handleCancel}>Cancel</button>
+                  <button className="option-button fade-in" onClick={handleJoinSessionSubmit}>{t.joinSession}</button>
+                  <button className="option-button fade-in cancel" onClick={handleCancel}>{t.cancel}</button>
                 </>
               ) : (
                 <>
-                  <label htmlFor="session-name" className="session-label fade-in">Create session</label>
+                  <label htmlFor="session-name" className="session-label fade-in">{t.createSessionLabel}</label>
                   <input
                     type="text"
                     id="session-name"
-                    placeholder="session name"
+                    placeholder={t.sessionNamePlaceholder}
                     className="session-input fade-in"
                     value={sessionName}
                     onChange={(e) => setSessionName(e.target.value)}
                   />
                   {errorMessage && <div className="error-message fade-in">{errorMessage}</div>}
-                  <button className="option-button fade-in" onClick={handleCreateSessionSubmit}>Create</button>
-                  <button className="option-button fade-in cancel" onClick={handleCancel}>Cancel</button>
+                  <button className="option-button fade-in" onClick={handleCreateSessionSubmit}>{t.createSession}</button>
+                  <button className="option-button fade-in cancel" onClick={handleCancel}>{t.cancel}</button>
                 </>
               )}
             </>
@@ -226,6 +295,7 @@ function Content() {
           setUsers={setUsers}
           sessionId={sessionId}
           username={username}
+          language={language}
         />
       )}
     </div>

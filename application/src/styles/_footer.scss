@@ -3,7 +3,48 @@
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: var(--footer-bg-color);
+  background-color: var(--background-color);
   padding: 5px 0;
   min-width: 720px;
+}
+
+.settings {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.settings-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text-white-color);
+  transition: transform 0.3s ease;
+}
+
+.settings-icon:hover {
+  transform: rotate(360deg);
+}
+
+.settings-menu {
+  position: absolute;
+  right: 0px;
+  bottom: 45px;
+  background-color: var(--background-color);
+  border-radius: 4px;
+  padding: 20px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.settings-menu select {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  background-color: var(--text-white-color);
+  color: var(--text-black-color);
+  margin-bottom: 10px;
+  margin-top: 5px;
+  width: 130px;
 }
