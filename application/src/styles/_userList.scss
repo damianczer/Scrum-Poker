@@ -1,0 +1,62 @@
+@use 'global' as *;
+
+.user-list {
+  margin-top: 20px;
+  width: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include fade-in;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: var(--text-white-color);
+}
+
+.username {
+  font-weight: bold;
+  color: var(--text-black-color);
+}
+
+.selected-card {
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(165, 165, 165);
+  border-radius: 4px;
+  &.hidden {
+    background-color: transparent;
+  }
+}
+
+.check-icon {
+  color: green;
+}
+
+.averange-estimate {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--text-black-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  @include fade-in;
+  p {
+    margin: 0;
+  }
+}
+
+.averange-value {
+  color: var(--text-black-color);
+}

@@ -20,3 +20,33 @@
     @include button-styles(var(--cancel-button-background-color), var(--cancel-button-hover-background-color));
   }
 }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-option {
+  width: 60px;
+  height: 100px;
+  border: 1px solid rgb(99, 99, 99);
+  border-radius: 4px;
+  background-color: var(--text-white-color);
+  color: var(--text-black-color);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  @include fade-in;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  &.selected {
+    background-color: var(--background-color);
+    color: var(--text-white-color);
+  }
+}
