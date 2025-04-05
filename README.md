@@ -15,5 +15,3 @@ Scrum Poker - is an essential tool for a software house team that works with Scr
 ![image](https://github.com/user-attachments/assets/ce06d2d4-ccf2-400e-aa6e-29a57aefd381)
 
 The app interacts live, joining sessions and voting is simple and efficient. You can choose the interface language and if you get bored with the color just change it.
-
-Please note that the code of this application is copyrighted and cannot be used for personal purposes. You must obtain permission from the author in order to use the code.
