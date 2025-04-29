@@ -5,9 +5,10 @@ React scrum poker application - estimate tasks
 ![GitHub watchers](https://img.shields.io/github/watchers/damianczer/scrum-poker?style=social) <br>
 ![GitHub issues](https://img.shields.io/github/issues/damianczer/scrum-poker?style=flat-square) <br>
 
-**Authors:** [Damian Czerwiński](https://github.com/damianczer/)
+**Author:** [Damian Czerwiński](https://github.com/damianczer/)
 
-Technology: <br><br>
+**Technology:** 
+<br><br>
 React.js  - https://react.dev/ <br> 
 Sass - https://sass-lang.com/documentation/syntax/ <br>
 Firebase - https://firebase.google.com/
