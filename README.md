@@ -17,7 +17,9 @@ The frontend is built as an SPA (Single-Page-Application) <br>
 Welcome to Scrum Poker! In this application you will be able to estimate tasks (User Stories and others), which are worked on in modern working methodologies for example Agile. The application works with anonymous accounts and sessions. You provide a user name, then you can create a session and share it with others, or you can join an existing session using a unique ID. When everyone is ready to estimate - there is a stage of selecting cards with estimates, all votes are hidden but you can see who cast the vote. When we have a set one person reveals the cards and we get the average estimate and the individual estimates. Everything works in real time (UI refreshes) I personally use this tool in my daily work and encourage you to use it! Have fun with it!
 <br>
 
-The application allows you to change the interface language and change the theme so the UI doesn't get boring quickly :)
+The application allows you to change the interface language and change the theme so the UI doesn't get boring quickly :) <br>
+
+The application focuses 100% on desktop so mobile responsiveness is limited, there is support for smaller resolutions but only up to a certain scale.
 
  <h1>How do you get the Frontend up and running?</h1>
 
