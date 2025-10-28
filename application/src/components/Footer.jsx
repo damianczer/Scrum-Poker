@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import Cookies from 'js-cookie';
 import '../styles/_footer.scss';
 import { translations } from '../translations/footer';
@@ -73,8 +73,11 @@ const Footer = ({ setLanguage }) => {
   return (
     <footer className="footer">
       <div className="social-icons">
-        <a href="https://www.linkedin.com/in/daczerw/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/daczerw/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
           <FontAwesomeIcon icon={faLinkedin} className="linkedin-icon" />
+        </a>
+        <a href="https://github.com/damianczer" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <FontAwesomeIcon icon={faGithub} className="github-icon" />
         </a>
       </div>
       <p>{t.copyright} &copy; {currentYear} Damian Czerwiński - {t.copyrightend}</p>

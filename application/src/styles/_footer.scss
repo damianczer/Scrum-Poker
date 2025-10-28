@@ -33,15 +33,24 @@
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
-}
+  display: flex;
+  gap: 15px;
+  align-items: center;
 
-.linkedin-icon {
-  font-size: 20px;
-  color: var(--text-white-color);
-  transition: color 0.3s ease;
+  a {
+    transition: transform 0.3s ease, opacity 0.3s ease;
 
-  &:hover {
-    color: #0077b5;
+    &:hover {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  .linkedin-icon,
+  .github-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
   }
 }
 
