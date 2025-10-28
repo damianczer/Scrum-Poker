@@ -1,30 +1,18 @@
-# 🚀 Scrum-Poker
+# Scrum Poker
 
 ![GitHub stars](https://img.shields.io/github/stars/damianczer/scrum-poker?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/damianczer/scrum-poker?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/damianczer/scrum-poker?style=flat-square)
 
-> **Estimate tasks easily with a beautiful, real-time React app powered by Firebase!**
-
-Welcome to **Scrum Poker** – a modern, real-time task estimation tool designed for Agile teams. Built with React and Firebase, this application provides seamless collaboration through anonymous sessions, instant updates, and a fully customizable interface.
-
----
-
-## 👨‍💻 Author
-
-**[Damian Czerwiński](https://github.com/damianczer/)**
-
----
+> **Estimate tasks easily with a beautiful, real-time React Application powered by Firebase!**
 
 ## 🛠️ Technologies Used
 
-- ⚛️ **React.js** - [react.dev](https://react.dev/) - Modern UI framework
-- 🎨 **Sass** - [sass-lang.com](https://sass-lang.com/documentation/syntax/) - Advanced styling
-- 🔥 **Firebase Realtime Database** - [firebase.google.com](https://firebase.google.com/) - Real-time synchronization
-- 📦 **Webpack** - [webpack.js.org](https://webpack.js.org/) - Module bundler & optimization
+- ⚛️ **React.js** - [react.dev](https://react.dev/)
+- 🎨 **Sass** - [sass-lang.com](https://sass-lang.com/documentation/syntax/)
+- 🔥 **Firebase Realtime Database** - [firebase.google.com](https://firebase.google.com/)
+- 📦 **Webpack** - [webpack.js.org](https://webpack.js.org/)
 - 🍪 **js-cookie** - User preferences management
-
----
 
 ## ✨ Features
 
@@ -53,8 +41,6 @@ Welcome to **Scrum Poker** – a modern, real-time task estimation tool designed
 - 🚀 Built as SPA (Single-Page Application)
 - ⚙️ Optimized production builds with Webpack
 
----
-
 ## 🔥 How It Works
 
 ### Real-time Collaboration
@@ -73,19 +59,19 @@ User preferences are stored locally using cookies:
 ```
 These settings persist across sessions (365 days) for a personalized experience.
 
----
-
 ## 📸 Preview
 
-**Login Panel:**
+Main View:
 
-![image](https://github.com/user-attachments/assets/dba26b66-683b-4090-953e-41ca7fecf66f)
+<img width="645" height="916" alt="image" src="https://github.com/user-attachments/assets/6b30422e-9438-4c41-b349-5b40841037d1" />
 
-**Estimation Session:**
+Manu:
+
+<img width="647" height="918" alt="image" src="https://github.com/user-attachments/assets/19592fdc-ca69-4648-8e99-ad29e5602345" />
+
+Estimation Session:
 
 ![image](https://github.com/user-attachments/assets/d8dd3d3f-134d-4eab-a1db-830c27680d57)
-
----
 
 ## 🚦 Quick Start
 
@@ -121,8 +107,6 @@ npm run build
 - Minified & compressed for maximum performance
 - Ready to deploy to any static hosting
 
----
-
 ## 📝 Usage Guide
 
 ### Starting a Session
@@ -147,13 +131,9 @@ npm run build
 - **Switch language** between English and Polish
 - Settings are automatically saved
 
----
-
 ## 🌍 Live Demo
 
 Try it here: **[https://www.damianczerwinski.pl/scrum-poker/](https://www.damianczerwinski.pl/scrum-poker/)**
-
----
 
 ## 🗂️ Project Structure
 
@@ -172,8 +152,6 @@ scrum-poker/
 └── README.md
 ```
 
----
-
 ## 🔧 Configuration
 
 ### Firebase Setup
@@ -185,29 +163,21 @@ To use your own Firebase instance:
 3. Add your config to the application
 4. Update security rules for anonymous access
 
----
-
 ## 💡 Support & Feedback
 
 - 🐛 Found a bug? [Open an issue](https://github.com/damianczer/scrum-poker/issues)
 - 💬 Have a feature request? [Start a discussion](https://github.com/damianczer/scrum-poker/discussions)
 - 🤝 Want to contribute? Pull requests are welcome!
 
----
-
 ## 📄 License
 
 MIT License - feel free to use this project for your team!
-
----
 
 ## 🙏 Acknowledgments
 
 - Built with ❤️ for Agile teams
 - Inspired by Planning Poker methodology
 - Powered by modern web technologies
-
----
 
 > _"In Scrum we trust, in estimates we discuss!"_ 🎉
 
