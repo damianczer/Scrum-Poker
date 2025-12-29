@@ -1,185 +1,168 @@
+<div align="center">
+
 # Scrum Poker
 
-![GitHub stars](https://img.shields.io/github/stars/damianczer/scrum-poker?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/damianczer/scrum-poker?style=social)
-![GitHub issues](https://img.shields.io/github/issues/damianczer/scrum-poker?style=flat-square)
+*Real-time agile estimation tool*
 
-> **Estimate tasks easily with a beautiful, real-time React Application powered by Firebase!**
+[![GitHub stars](https://img.shields.io/github/stars/damianczer/Scrum-Poker?style=for-the-badge&color=gold)](https://github.com/damianczer/Scrum-Poker/stargazers)
+[![GitHub watchers](https://img.shields.io/github/watchers/damianczer/Scrum-Poker?style=for-the-badge&color=blue)](https://github.com/damianczer/Scrum-Poker/watchers)
+[![GitHub issues](https://img.shields.io/github/issues/damianczer/Scrum-Poker?style=for-the-badge&color=red)](https://github.com/damianczer/Scrum-Poker/issues)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://www.damianczerwinski.pl/scrum-poker/)
 
-## 🛠️ Technologies Used
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript) | `ES6+` | Programming language |
+| ![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat-square&logo=react) | `19.1.0` | Modern UI Framework |
+| ![Sass](https://img.shields.io/badge/Sass-1.87.0-CC6699?style=flat-square&logo=sass) | `1.87.0` | CSS preprocessor |
+| ![Firebase](https://img.shields.io/badge/Firebase-11.6.1-FFCA28?style=flat-square&logo=firebase) | `11.6.1` | Real-time database |
+| ![Webpack](https://img.shields.io/badge/Webpack-5.99.7-8DD6F9?style=flat-square&logo=webpack) | `5.99.7` | Module bundler |
+| ![js-cookie](https://img.shields.io/badge/js--cookie-3.0.5-F7DF1E?style=flat-square&logo=javascript) | `3.0.5` | User preferences management |
 
-- ⚛️ **React.js** - [react.dev](https://react.dev/)
-- 🎨 **Sass** - [sass-lang.com](https://sass-lang.com/documentation/syntax/)
-- 🔥 **Firebase Realtime Database** - [firebase.google.com](https://firebase.google.com/)
-- 📦 **Webpack** - [webpack.js.org](https://webpack.js.org/)
-- 🍪 **js-cookie** - User preferences management
+Estimate tasks easily with a beautiful, real-time React Application powered by Firebase for Agile teams using Planning Poker methodology.
 
-## ✨ Features
+<img width="1256" height="893" alt="Estimation Session" src="https://github.com/user-attachments/assets/d8dd3d3f-134d-4eab-a1db-830c27680d57" />
 
-### 🎯 Core Functionality
-- 🔒 **Anonymous Sessions** - No registration required, just enter your name
-- 🆔 **Unique Session IDs** - Create or join sessions with shareable links
-- 🃏 **Hidden Voting** - Votes are concealed until reveal
-- 👥 **Live Participants** - See who's in the session and who voted
-- 📊 **Smart Calculations** - Automatic average and individual estimates
-- ⚡ **Real-time Sync** - Powered by Firebase Realtime Database
+</div>
 
-### 🎨 Personalization
-- 🌈 **Theme Selection** - Choose from 5 color themes:
-  - 💚 Green
-  - 💙 Blue
-  - 🩵 Turquoise
-  - 🩶 Grey
-  - 🧡 Orange
-- 🌐 **Multi-language Support** - English & Polish
-- 🍪 **Persistent Settings** - Preferences saved in cookies
+<br>
 
-### 🖥️ Technical Highlights
-- 📱 Desktop-optimized (limited mobile support)
-- 🔄 Real-time UI updates across all connected clients
-- 💾 Cookie-based user preferences (theme, language)
-- 🚀 Built as SPA (Single-Page Application)
-- ⚙️ Optimized production builds with Webpack
+**Key Features & Capabilities:**
 
-## 🔥 How It Works
+- Anonymous Sessions - No registration required, just enter your name.
+- Unique Session IDs - Create or join sessions with shareable links.
+- Hidden Voting - Votes are concealed until reveal.
+- Live Participants - See who's in the session and who voted in real-time.
+- Smart Calculations - Automatic average and individual estimates.
+- Real-time Sync - Powered by Firebase Realtime Database.
+- Theme Selection - Choose from 5 color themes (Green, Blue, Turquoise, Grey, Orange).
+- Multi-language Support - English & Polish translations.
+- Persistent Settings - Preferences saved in cookies.
+- Desktop-optimized UI with limited mobile support.
+- 100% Real-time - all actions synchronized instantly across all participants.
+- Optimized for production (efficiency, safety, accessibility).
 
-### Real-time Collaboration
-The application uses **Firebase Realtime Database** to synchronize all actions instantly across all participants:
-- When someone joins → everyone sees it
-- When someone votes → vote count updates live
-- When cards are revealed → results appear simultaneously for all users
-
-### Cookie Management
-User preferences are stored locally using cookies:
-```javascript
-{
-  "color": "blue",     // Selected theme
-  "language": "en"     // Selected language
-}
-```
-These settings persist across sessions (365 days) for a personalized experience.
-
-## 📸 Preview
-
-Main View:
-
-<img width="645" height="916" alt="image" src="https://github.com/user-attachments/assets/6b30422e-9438-4c41-b349-5b40841037d1" />
-
-Manu:
-
-<img width="647" height="918" alt="image" src="https://github.com/user-attachments/assets/19592fdc-ca69-4648-8e99-ad29e5602345" />
-
-Estimation Session:
-
-![image](https://github.com/user-attachments/assets/d8dd3d3f-134d-4eab-a1db-830c27680d57)
-
-## 🚦 Quick Start
-
-### 1. Prerequisites
-
-- [Node.js & npm](https://nodejs.org/en) (v14 or higher)
-
-### 2. Installation
-
-```bash
-git clone https://github.com/damianczer/scrum-poker.git
-cd scrum-poker/application
-npm install
-```
-
-### 3. Development Server
-
-```bash
-npm start
-```
-
-- The app runs on [http://localhost:3000/](http://localhost:3000/)
-- Hot reload enabled for development
-- If port 3000 is busy, you'll see a message in the console
-
-### 4. Production Build
-
-```bash
-npm run build
-```
-
-- Generates optimized files in `dist/` folder
-- Minified & compressed for maximum performance
-- Ready to deploy to any static hosting
-
-## 📝 Usage Guide
-
-### Starting a Session
-
-1. **Enter your username** on the login screen
-2. **Create a new session** or **join existing** with a session ID
-3. Share the session link with your team
-
-### Estimation Flow
-
-1. **Discuss the task** with your team
-2. **Select a card** with your estimate (votes are hidden)
-3. **Wait** for everyone to vote (live counter shows progress)
-4. **Reveal cards** when ready
-5. **View results**: individual estimates + calculated average
-6. **Reset** for the next task
-
-### Customization
-
-- Click the **⚙️ Settings icon** in the footer
-- **Change theme** from 5 available colors
-- **Switch language** between English and Polish
-- Settings are automatically saved
-
-## 🌍 Live Demo
-
-Try it here: **[https://www.damianczerwinski.pl/scrum-poker/](https://www.damianczerwinski.pl/scrum-poker/)**
-
-## 🗂️ Project Structure
+## 📁 Project Architecture
 
 ```
-scrum-poker/
+Scrum-Poker/
 ├── application/
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── styles/         # Sass stylesheets
-│   │   ├── translations/   # i18n files
-│   │   └── index.js        # Entry point
 │   ├── public/
-│   │   └── index.html      # HTML template
-│   ├── webpack.config.js   # Webpack configuration
-│   └── package.json        # Dependencies
-└── README.md
+│   │   └── index.html                  # HTML entry point
+│   │
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── CardSelection.jsx       # Card voting component
+│   │   │   ├── Content.jsx             # Main content wrapper
+│   │   │   ├── Footer.jsx              # Footer with settings
+│   │   │   ├── Header.jsx              # Application header
+│   │   │   ├── Modal.jsx               # Modal dialogs
+│   │   │   └── UserList.jsx            # Live participants list
+│   │   │
+│   │   ├── constants/                  # Application constants
+│   │   ├── hooks/                      # Custom React hooks
+│   │   ├── services/                   # Firebase services
+│   │   │
+│   │   ├── styles/
+│   │   │   ├── _body.scss              # Body styles
+│   │   │   ├── _cardSelection.scss     # Card selection styles
+│   │   │   ├── _content.scss           # Content area styles
+│   │   │   ├── _footer.scss            # Footer styles
+│   │   │   ├── _global.scss            # Global styles & variables
+│   │   │   ├── _header.scss            # Header styles
+│   │   │   ├── _modal.scss             # Modal styles
+│   │   │   └── _userList.scss          # User list styles
+│   │   │
+│   │   ├── translations/
+│   │   │   ├── cardSelection.js        # Card selection translations
+│   │   │   ├── content.js              # Content translations
+│   │   │   ├── footer.js               # Footer translations
+│   │   │   └── header.js               # Header translations
+│   │   │
+│   │   ├── types/                      # Type definitions
+│   │   ├── utils/                      # Utility functions
+│   │   │
+│   │   ├── App.jsx                     # Root component
+│   │   ├── App.scss                    # Main application styles
+│   │   ├── firebaseConfig.js           # Firebase configuration
+│   │   └── index.js                    # React DOM rendering entry point
+│   │
+│   ├── package.json                    # Dependencies & scripts
+│   └── webpack.config.js               # Webpack build configuration
+│
+├── LICENSE                             # MIT License
+└── README.md                           # Project documentation
 ```
 
-## 🔧 Configuration
+## ⚒️ Installation & Setup
 
-### Firebase Setup
+### Prerequisites
 
-To use your own Firebase instance:
+```bash
+- Node.js 14.0.0 or higher
+- npm 6.0.0 or higher (or yarn/pnpm equivalent)
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Firebase account (for your own instance)
+```
 
-1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
-2. Enable **Realtime Database**
-3. Add your config to the application
-4. Update security rules for anonymous access
+### Quick Start
 
-## 💡 Support & Feedback
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/damianczer/Scrum-Poker.git
 
-- 🐛 Found a bug? [Open an issue](https://github.com/damianczer/scrum-poker/issues)
-- 💬 Have a feature request? [Start a discussion](https://github.com/damianczer/scrum-poker/discussions)
-- 🤝 Want to contribute? Pull requests are welcome!
+# 2️⃣ Navigate to project directory
+cd Scrum-Poker/application
 
-## 📄 License
+# 3️⃣ Install dependencies
+npm install
 
-MIT License - feel free to use this project for your team!
+# 4️⃣ Start development server
+npm start
 
-## 🙏 Acknowledgments
+# 🎉 Application will open at http://localhost:3000
+```
 
-- Built with ❤️ for Agile teams
-- Inspired by Planning Poker methodology
-- Powered by modern web technologies
+### Build for Production
 
-> _"In Scrum we trust, in estimates we discuss!"_ 🎉
+```bash
+# Create optimized production build
+npm run build
 
-**Star ⭐ this repo if you find it useful!**
+# Production files will be in the 'dist' folder
+# Deploy the entire dist folder to your web hosting
+```
+
+### Additional Commands
+
+```bash
+# Run production build
+npm run deploy
+```
+
+## 📜 License
+
+```
+Copyright © 2025 Damian Czerwiński
+
+This project is copyrighted and proprietary software.
+All rights reserved.
+
+Unauthorized copying, modification, distribution, or use of this software,
+via any medium, is strictly prohibited without explicit written permission
+from the copyright holder.
+
+For licensing inquiries or permission requests:
+📧 Email: kontakt@damianczerwinski.pl
+🌐 Web: https://www.damianczerwinski.pl
+```
+
+<br>
+
+<div align="center">
+  
+**Made with ❤️ and ☕ by Damian Czerwiński**
+
+*Building beautiful, functional web experiences one component at a time*
+
+</div>
 
