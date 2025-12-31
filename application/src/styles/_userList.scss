@@ -30,6 +30,7 @@
   font-size: 16px;
   color: rgb(165, 165, 165);
   border-radius: 4px;
+
   &.hidden {
     background-color: transparent;
   }
@@ -39,7 +40,7 @@
   color: green;
 }
 
-.averange-estimate {
+.average-estimate {
   font-size: 16px;
   font-weight: bold;
   margin-top: 10px;
@@ -52,11 +53,12 @@
   display: flex;
   justify-content: space-between;
   @include fade-in;
+
   p {
     margin: 0;
   }
 }
 
-.averange-value {
+.average-value {
   color: var(--text-black-color);
 }

@@ -1,50 +1,56 @@
-import React from 'react';
+import { useMemo, memo } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { translations } from '../translations/cardSelection';
+import { faCheckCircle } from '../utils/icons';
+import { useTranslation } from '../utils/i18n';
+import { getCardColor, calculateAverage } from '../utils/cardUtils';
 import '../styles/_userList.scss';
 
-const UserList = ({ users, showCards, language }) => {
-  const t = translations[language];
+const UserList = memo(function UserList({ users, showCards, language }) {
+  const t = useTranslation(language, 'content');
 
-  const calculateaverange = (users) => {
-    const validCards = users
-      .map(user => parseFloat(user.selectedCard))
-      .filter(card => !isNaN(card));
-    const sum = validCards.reduce((acc, card) => acc + card, 0);
-    return validCards.length ? (sum / validCards.length).toFixed(2) : 'N/A';
-  };
-
-  const getCardColor = (card) => {
-    if (card === '?') return 'black';
-    if (card >= 0.5 && card <= 3) return 'green';
-    if (card === '5') return 'orange';
-    if (card >= 8 && card <= 13) return 'red';
-    return 'inherit';
-  };
-
-  const averangeEstimate = calculateaverange(users);
+  const averageEstimate = useMemo(() =>
+    calculateAverage(users),
+    [users]
+  );
 
   return (
     <div className="user-list">
-      {users.map((user, index) => (
-        <div key={index} className="user">
+      {users.map((user) => (
+        <div key={user.name} className="user">
           <span className="username">{user.name}</span>
           <span
             className={`selected-card ${!showCards && user.selectedCard ? 'hidden' : ''}`}
             style={{ color: showCards ? getCardColor(user.selectedCard) : 'inherit' }}
           >
-            {showCards || !user.selectedCard ? user.selectedCard : <FontAwesomeIcon icon={faCheckCircle} className="check-icon" />}
+            {showCards || !user.selectedCard ? (
+              user.selectedCard
+            ) : (
+              <FontAwesomeIcon icon={faCheckCircle} className="check-icon" />
+            )}
           </span>
         </div>
       ))}
+
       {showCards && (
-        <div className="averange-estimate">
-          <p>{t.averangeEstimate}</p><span className="averange-value">{averangeEstimate}</span>
+        <div className="average-estimate">
+          <p>{t('averageEstimate')}</p>
+          <span className="average-value">{averageEstimate}</span>
         </div>
       )}
     </div>
   );
+});
+
+UserList.displayName = 'UserList';
+
+UserList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    selectedCard: PropTypes.string,
+  })).isRequired,
+  showCards: PropTypes.bool.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 export default UserList;

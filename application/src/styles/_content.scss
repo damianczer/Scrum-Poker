@@ -4,16 +4,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex: 1;
   flex-direction: column;
+  padding: var(--spacing-lg);
+  background: transparent;
+  overflow: auto;
 }
 
 .card {
   @include card-styles;
-  width: 50vh;
-  height: 50vh;
+  width: 100%;
+  max-width: 420px;
+  min-height: 400px;
   justify-content: center;
-  max-width: 600px;
 }
 
 .welcome-message {
@@ -26,13 +29,20 @@
 
 .option-button {
   @include button-styles(var(--button-background-color), var(--button-hover-background-color));
-  margin: 10px 0;
+  margin: 15px 0;
+
   &.cancel {
-    @include button-styles(var(--cancel-button-background-color), var(--cancel-button-hover-background-color));
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+    box-shadow: 0 4px 15px rgba(238, 90, 90, 0.4);
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(238, 90, 90, 0.5);
+    }
   }
 }
 
-.session-label, .username-label {
+.session-label,
+.username-label {
   margin: 10px 0;
   font-size: 16px;
   width: 100%;
@@ -40,7 +50,8 @@
   color: var(--text-black-color);
 }
 
-.session-input, .username-input {
+.session-input,
+.username-input {
   @include input-styles;
 }
 
@@ -57,7 +68,7 @@
 .cookies-consent {
   display: flex;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .cookie-icon {
@@ -83,7 +94,81 @@
 }
 
 .input-icon {
-  font-size: 3em;
-  margin-bottom: 10px;
-  color: var(--icon-color);
+  font-size: 4em;
+  margin-bottom: 20px;
+  color: #b3b3b3;
+}
+
+/* Loading States */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: var(--spacing-md);
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: var(--text-black-color);
+  font-size: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border-color) 25%,
+    var(--background-color) 50%,
+    var(--border-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-card {
+  @extend .skeleton;
+  width: 60px;
+  height: 80px;
+}
+
+.skeleton-text {
+  @extend .skeleton;
+  height: 20px;
+  width: 100%;
+  margin: 8px 0;
 }
