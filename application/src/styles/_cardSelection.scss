@@ -16,6 +16,7 @@
 .option-button {
   @include button-styles(var(--button-background-color), var(--button-hover-background-color));
   margin: 10px 5px;
+
   &.reset {
     @include button-styles(var(--cancel-button-background-color), var(--cancel-button-hover-background-color));
   }
@@ -41,12 +42,22 @@
   font-weight: bold;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   @include fade-in;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
   &.selected {
     background-color: var(--background-color);
     color: var(--text-white-color);
   }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }

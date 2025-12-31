@@ -2,13 +2,20 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAmWJxTEapRlPGMT7RenD7xTEhy5lztv5M",
-    authDomain: "scrum-poker-97f56.firebaseapp.com",
-    projectId: "scrum-poker-97f56",
-    storageBucket: "scrum-poker-97f56.firebasestorage.app",
-    messagingSenderId: "415221865360",
-    appId: "1:415221865360:web:edbb5c1fc2095699b77115"
+    apiKey: __FIREBASE_API_KEY__,
+    authDomain: __FIREBASE_AUTH_DOMAIN__,
+    projectId: __FIREBASE_PROJECT_ID__,
+    storageBucket: __FIREBASE_STORAGE_BUCKET__,
+    messagingSenderId: __FIREBASE_MESSAGING_SENDER_ID__,
+    appId: __FIREBASE_APP_ID__
 };
+
+const requiredKeys = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'messagingSenderId', 'appId'];
+const missingKeys = requiredKeys.filter(key => !firebaseConfig[key]);
+
+if (missingKeys.length > 0) {
+    console.error(`Missing Firebase configuration: ${missingKeys.join(', ')}. Check your .env file.`);
+}
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);

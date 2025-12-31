@@ -1,31 +1,63 @@
 import './App.scss';
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import Cookies from 'js-cookie';
+import { createContext } from 'react';
+import PropTypes from 'prop-types';
+import Content from './components/Content';
+import Footer from './components/Footer';
+import ErrorBoundary from './components/common/ErrorBoundary';
+import { useSettings } from './hooks/useSettings';
+import { useTranslation } from './utils/i18n';
 
-const Footer = lazy(() => import('./components/Footer'));
-const Header = lazy(() => import('./components/Header'));
-const Content = lazy(() => import('./components/Content'));
+export const ThemeContext = createContext();
+
+const ThemeOverlay = ({ language }) => {
+  const t = useTranslation(language, 'common');
+  return (
+    <div className="theme-overlay">
+      <div className="spinner"></div>
+      <p className="loading-text">{t('loading')}</p>
+    </div>
+  );
+};
+
+ThemeOverlay.propTypes = {
+  language: PropTypes.string.isRequired,
+};
 
 function App() {
-  const [language, setLanguage] = useState(() => {
-    const settings = JSON.parse(Cookies.get('dc_scrum_poker_settings') || '{}');
-    return settings.language || 'en';
-  });
+  const {
+    theme,
+    language,
+    isThemeChanging,
+    toggleTheme,
+    toggleLanguage,
+    setLanguage,
+  } = useSettings();
 
-  useEffect(() => {
-    const settings = JSON.parse(Cookies.get('dc_scrum_poker_settings') || '{}');
-    settings.language = language;
-    Cookies.set('dc_scrum_poker_settings', JSON.stringify(settings), { expires: 365 });
-  }, [language]);
+  const t = useTranslation(language, 'common');
+
+  const contextValue = {
+    theme,
+    toggleTheme,
+    language,
+    setLanguage,
+    toggleLanguage,
+  };
 
   return (
-    <div className="App">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Header language={language} />
-        <Content language={language} />
-        <Footer setLanguage={setLanguage} />
-      </Suspense>
-    </div>
+    <ErrorBoundary
+      title={t('somethingWentWrong')}
+      message={t('unexpectedError')}
+      retryLabel={t('tryAgain')}
+      showRetry
+    >
+      <ThemeContext.Provider value={contextValue}>
+        {isThemeChanging && <ThemeOverlay language={language} />}
+        <div className="App" data-theme={theme}>
+          <Content language={language} />
+          <Footer />
+        </div>
+      </ThemeContext.Provider>
+    </ErrorBoundary>
   );
 }
 

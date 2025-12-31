@@ -1,0 +1,115 @@
+{
+  "header": {
+    "shareSession": "Share Session",
+    "sessionIdMessage": "Session ID copied to clipboard."
+  },
+  "content": {
+    "welcome": "Welcome to Scrum Poker",
+    "enterUsername": "Enter your username",
+    "username": "Username",
+    "usernamePlaceholder": "Your name",
+    "submit": "Submit",
+    "cookiesConsent": "We use cookies to save your preferences",
+    "chooseOption": "What would you like to do?",
+    "joinSession": "Join Session",
+    "joinSessionLabel": "Enter session ID",
+    "sessionIdPlaceholder": "Session ID",
+    "createSession": "Create Session",
+    "createSessionLabel": "Enter session name",
+    "sessionName": "Session Name",
+    "sessionNamePlaceholder": "My planning session",
+    "sessionId": "Session ID",
+    "create": "Create",
+    "join": "Join",
+    "cancel": "Cancel",
+    "usernameErrorShort": "Username must be at least 2 characters long",
+    "usernameErrorLong": "Username cannot exceed 25 characters",
+    "sessionNameError": "Session name must be at least 3 characters long",
+    "sessionIdError": "Please enter a valid session ID",
+    "sessionIdNotExist": "Session does not exist",
+    "sessionFull": "Session is full (max 8 users)",
+    "usernameExists": "Username already exists in this session",
+    "errorCreatingSession": "Error creating session: ",
+    "errorJoiningSession": "Error joining session: ",
+    "errorSelectingCard": "Error selecting card. Please try again.",
+    "errorTogglingCards": "Error toggling cards. Please try again.",
+    "errorResettingVotes": "Error resetting votes. Please try again.",
+    "selectCard": "Select your card",
+    "waiting": "Waiting for others...",
+    "reveal": "Reveal Cards",
+    "reset": "Reset",
+    "average": "Average",
+    "averageEstimate": "Average estimate:",
+    "voted": "voted",
+    "notVoted": "not voted yet"
+  },
+  "cardSelection": {
+    "selectCard": "Select a card",
+    "yourVote": "Your vote",
+    "resetVotes": "Reset Votes",
+    "showCards": "Show Cards",
+    "hideCards": "Hide Cards"
+  },
+  "footer": {
+    "copyright": "Scrum Poker. All rights reserved.",
+    "createdBy": "Created by",
+    "language": "Language",
+    "theme": "Theme",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "termsContent": {
+      "introduction": {
+        "title": "Introduction",
+        "text": "Welcome to Scrum Poker. By using this application, you agree to these Terms of Service. Please read them carefully before using the service."
+      },
+      "usage": {
+        "title": "Use of Service",
+        "text": "Scrum Poker is a free tool for agile teams to conduct planning poker sessions. You may use this service for personal and commercial purposes in accordance with these terms."
+      },
+      "account": {
+        "title": "User Sessions",
+        "text": "You are responsible for maintaining the confidentiality of your session IDs. Sessions are temporary and data is not permanently stored."
+      },
+      "limitations": {
+        "title": "Limitations of Liability",
+        "text": "The service is provided 'as is' without any warranties. We are not liable for any damages arising from the use of this service."
+      },
+      "changes": {
+        "title": "Changes to Terms",
+        "text": "We reserve the right to modify these terms at any time. Continued use of the service after changes constitutes acceptance of the new terms."
+      }
+    },
+    "privacyContent": {
+      "introduction": {
+        "title": "Introduction",
+        "text": "Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use Scrum Poker."
+      },
+      "dataCollection": {
+        "title": "Data Collection",
+        "text": "We collect minimal data necessary for the service to function: username (temporary), session data, and voting choices. This data is stored temporarily and deleted when sessions end."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "text": "We use cookies to save your preferences such as language and theme settings. These cookies are stored locally in your browser."
+      },
+      "dataUsage": {
+        "title": "Data Usage",
+        "text": "Your data is used solely for providing the planning poker functionality. We do not sell, share, or use your data for marketing purposes."
+      },
+      "contact": {
+        "title": "Contact",
+        "text": "If you have any questions about this Privacy Policy, please contact us through our website."
+      }
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "somethingWentWrong": "Something went wrong",
+    "unexpectedError": "An unexpected error occurred. Please refresh the page.",
+    "tryAgain": "Try Again"
+  }
+}

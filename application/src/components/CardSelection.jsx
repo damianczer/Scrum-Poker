@@ -1,75 +1,82 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
+import { useMemo, useCallback, memo } from 'react';
+import PropTypes from 'prop-types';
 import '../styles/_cardSelection.scss';
-import { translations } from '../translations/cardSelection';
+import { useTranslation } from '../utils/i18n';
+import { POKER_CARDS } from '../constants/constants';
+import { getCurrentUserCard } from '../utils/cardUtils';
 import UserList from './UserList';
+import Button from './common/Button';
 
-const CardSelection = ({ selectedCard, handleCardSelect, users, sessionId, username, language }) => {
-  const [showCards, setShowCards] = useState(false);
-  const [localUsers, setLocalUsers] = useState(users);
-  const cards = ['?', '0.5', '1', '2', '3', '5', '8', '13'];
-  const isResetting = useRef(false);
+const CardSelection = memo(function CardSelection({
+  users,
+  showCards,
+  username,
+  language,
+  onCardSelect,
+  onToggleCards,
+  onResetVotes,
+}) {
+  const t = useTranslation(language, 'cardSelection');
 
-  const t = translations[language];
+  const currentUserCard = useMemo(() =>
+    getCurrentUserCard(users, username),
+    [users, username]
+  );
 
-  useEffect(() => {
-    const sessionRef = doc(db, 'sessions', sessionId);
-    const unsubscribe = onSnapshot(sessionRef, (sessionSnap) => {
-      if (sessionSnap.exists() && !isResetting.current) {
-        setShowCards(sessionSnap.data().showCards);
-        setLocalUsers(sessionSnap.data().users);
-      }
-    });
-    return () => unsubscribe();
-  }, [sessionId]);
-
-  const handleResetVotes = async () => {
-    const sessionRef = doc(db, 'sessions', sessionId);
-    const updatedUsers = localUsers.map(user => ({ ...user, selectedCard: null }));
-    isResetting.current = true;
-    await updateDoc(sessionRef, { users: updatedUsers, showCards: false });
-    setLocalUsers(updatedUsers);
-    setShowCards(false);
-    isResetting.current = false;
-  };
-
-  const handleToggleCards = async () => {
-    const sessionRef = doc(db, 'sessions', sessionId);
-    await updateDoc(sessionRef, { showCards: !showCards });
-  };
-
-  const handleCardSelectLocal = async (card) => {
-    const updatedUsers = localUsers.map((user) =>
-      user.name === username ? { ...user, selectedCard: card } : user
-    );
-    await updateDoc(doc(db, 'sessions', sessionId), { users: updatedUsers });
-    handleCardSelect(card);
-    setLocalUsers(updatedUsers);
-  };
+  const handleCardClick = useCallback((card) => {
+    onCardSelect(card);
+  }, [onCardSelect]);
 
   return (
     <div className="card-selection-container">
       <div className="card-selection fade-in">
         <div className="cards">
-          {cards.map((card) => (
-            <button
+          {POKER_CARDS.map((card) => (
+            <Button
               key={card}
-              className={`card-option ${localUsers.find(user => user.name === username)?.selectedCard === card ? 'selected' : ''} fade-in`}
-              onClick={() => handleCardSelectLocal(card)}
+              variant="card"
+              className={currentUserCard === card ? 'selected' : ''}
+              onClick={() => handleCardClick(card)}
+              ariaLabel={`Select card ${card}`}
+              aria-pressed={currentUserCard === card}
             >
               {card}
-            </button>
+            </Button>
           ))}
         </div>
-        <UserList users={localUsers} showCards={showCards} language={language} />
-        <button className="option-button reset fade-in" onClick={handleResetVotes}>{t.resetVotes}</button>
-        <button className="option-button fade-in" onClick={handleToggleCards}>
-          {showCards ? t.hideCards : t.showCards}
-        </button>
+
+        <UserList
+          users={users}
+          showCards={showCards}
+          language={language}
+        />
+
+        <div className="action-buttons">
+          <Button variant="reset" onClick={onResetVotes}>
+            {t('resetVotes')}
+          </Button>
+          <Button onClick={onToggleCards}>
+            {showCards ? t('hideCards') : t('showCards')}
+          </Button>
+        </div>
       </div>
     </div>
   );
+});
+
+CardSelection.displayName = 'CardSelection';
+
+CardSelection.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    selectedCard: PropTypes.string,
+  })).isRequired,
+  showCards: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
+  onCardSelect: PropTypes.func.isRequired,
+  onToggleCards: PropTypes.func.isRequired,
+  onResetVotes: PropTypes.func.isRequired,
 };
 
 export default CardSelection;

@@ -1,40 +1,93 @@
-import React, { useState } from 'react';
+import { useState, useContext, useCallback, memo } from 'react';
+import PropTypes from 'prop-types';
 import '../styles/_header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { translations } from '../translations/header';
+import { faUserCircle, faMoon, faSun, faShareNodes } from '../utils/icons';
+import { useTranslation } from '../utils/i18n';
+import { ThemeContext } from '../App';
+import { THEMES, LANGUAGES } from '../constants/constants';
 import Modal from './Modal';
 
-const Header = ({ username, onShare, language }) => {
-  const t = translations[language];
+const Header = memo(function Header({ username, onShare, language }) {
+  const t = useTranslation(language, 'header');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { theme, toggleTheme, toggleLanguage } = useContext(ThemeContext);
 
-  const handleShareClick = () => {
-    onShare();
+  const handleShareClick = useCallback(() => {
+    onShare?.();
     setIsModalVisible(true);
-  };
+  }, [onShare]);
+
+  const handleCloseModal = useCallback(() => {
+    setIsModalVisible(false);
+  }, []);
+
+  const isDarkTheme = theme === THEMES.DARK;
+  const isEnglish = language === LANGUAGES.EN;
 
   return (
     <header className="header">
-      <div className="logo">
-        <a href="/">Scrum Poker</a>
+      <div className="header-left">
+        <div className="logo">
+          <a href="/">
+            <img src="/logo.svg" alt="Scrum Poker" className="logo-img" />
+            Scrum Poker
+          </a>
+        </div>
       </div>
-      {username && (
-        <div className="user-info">
-          <FontAwesomeIcon icon={faUserCircle} className="user-icon" />
-          <span className="userid">{username}</span>
-        </div>
-      )}
-      {onShare && (
-        <div className="share">
-          <button className="share-button" onClick={handleShareClick}>
-            {t.shareSession}
+
+      <div className="header-right">
+        <div className="header-controls">
+          <button
+            className="control-btn language-toggle"
+            onClick={toggleLanguage}
+            aria-label="Toggle language"
+            title={isEnglish ? 'Switch to Polish' : 'Przełącz na angielski'}
+          >
+            <span>{isEnglish ? 'PL' : 'EN'}</span>
           </button>
-          {isModalVisible && <Modal message={t.sessionIdMessage} onClose={() => setIsModalVisible(false)} />}
+
+          <button
+            className="control-btn theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            <FontAwesomeIcon icon={isDarkTheme ? faSun : faMoon} />
+          </button>
         </div>
-      )}
+
+        {username && (
+          <div className="user-info">
+            <FontAwesomeIcon icon={faUserCircle} className="user-icon" />
+            <span className="username">{username}</span>
+          </div>
+        )}
+
+        {onShare && (
+          <button className="share-button" onClick={handleShareClick}>
+            <FontAwesomeIcon icon={faShareNodes} />
+            <span>{t('shareSession')}</span>
+          </button>
+        )}
+
+        {isModalVisible && (
+          <Modal
+            message={t('sessionIdMessage')}
+            onClose={handleCloseModal}
+          />
+        )}
+      </div>
     </header>
   );
+});
+
+Header.displayName = 'Header';
+
+Header.propTypes = {
+  username: PropTypes.string,
+  onShare: PropTypes.func,
+  language: PropTypes.string.isRequired,
 };
 
 export default Header;
