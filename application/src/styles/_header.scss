@@ -85,6 +85,10 @@
     &.theme-toggle svg {
       font-size: 1.1rem;
     }
+
+    &.help-toggle svg {
+      font-size: 1.25rem;
+    }
   }
 
   .user-info {
@@ -100,12 +104,14 @@
     .user-icon {
       font-size: 1.1rem;
       color: #ffffff;
+      line-height: 1;
     }
 
     .username {
       font-weight: 500;
       font-size: 0.875rem;
       color: #ffffff;
+      line-height: 1;
     }
   }
 
@@ -120,10 +126,18 @@
     border-radius: var(--radius-md);
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 0.875rem;
     cursor: pointer;
     transition: var(--transition);
+
+    svg {
+      line-height: 1;
+    }
+
+    span {
+      line-height: 1;
+    }
 
     &:hover {
       background: rgba(255, 255, 255, 0.3);

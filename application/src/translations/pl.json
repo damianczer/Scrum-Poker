@@ -4,6 +4,8 @@
     "sessionIdMessage": "ID sesji skopiowane do schowka."
   },
   "content": {
+    "heroTitle": "Darmowe narzędzie do estymacji",
+    "heroSubtitle": "Planuj sprinty ze swoim zespołem w czasie rzeczywistym",
     "welcome": "Witaj w Scrum Poker",
     "enterUsername": "Podaj swoją nazwę użytkownika",
     "username": "Nazwa użytkownika",
@@ -101,6 +103,31 @@
       "contact": {
         "title": "Kontakt",
         "text": "Jeśli masz pytania dotyczące niniejszej Polityki Prywatności, skontaktuj się z nami poprzez naszą stronę internetową."
+      }
+    }
+  },
+  "help": {
+    "title": "Jak używać Scrum Poker",
+    "sections": {
+      "ready": {
+        "title": "Zanim zaczniesz estymować",
+        "text": "Przed estymacją upewnij się, że user story jest 'gotowe' i zostało omówione z zespołem. Gotowa historia powinna mieć jasne kryteria akceptacji, być zrozumiała dla wszystkich członków zespołu i być wystarczająco mała, aby ukończyć ją w ramach sprintu."
+      },
+      "estimating": {
+        "title": "Estymacja za pomocą Scrum Poker",
+        "text": "Każdy członek zespołu wybiera kartę reprezentującą jego szacunek wysiłku potrzebnego do realizacji. Karty są ukryte dopóki wszyscy nie zagłosują, co zapobiega wpływaniu na siebie nawzajem. To narzędzie pomaga przeprowadzić ten proces w czasie rzeczywistym ze zdalnym zespołem."
+      },
+      "storyPoints": {
+        "title": "Zrozumienie Story Points",
+        "text": "Story points to abstrakcyjna miara reprezentująca złożoność implementacji user story. Uwzględniają wysiłek, ryzyko i niepewność. Sekwencja podobna do Fibonacciego (0.5, 1, 2, 3, 5, 8, 13) odzwierciedla rosnącą niepewność przy większych zadaniach. Filiżanka kawy (☕) oznacza 'potrzebuję przerwy' lub 'pas'."
+      },
+      "results": {
+        "title": "Odkrywanie wyników",
+        "text": "Po tym jak wszyscy zagłosują, kliknij 'Pokaż karty' aby odsłonić wszystkie szacunki. Jeśli się zgadzają, historia została pomyślnie oszacowana! Jeśli szacunki znacząco się różnią, przedyskutuj powody - często ujawnia to ważne szczegóły dotyczące historii."
+      },
+      "importance": {
+        "title": "Dlaczego estymacja ma znaczenie",
+        "text": "Dobrze oszacowane historie pomagają product ownerowi ocenić, czy wartość funkcjonalności jest warta złożoności i wysiłku potrzebnego do jej implementacji. Pomaga to również w planowaniu sprintów i ustalaniu realistycznych oczekiwań z interesariuszami."
       }
     }
   },

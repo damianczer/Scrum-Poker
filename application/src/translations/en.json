@@ -4,6 +4,8 @@
     "sessionIdMessage": "Session ID copied to clipboard."
   },
   "content": {
+    "heroTitle": "Free Online Estimation Tool",
+    "heroSubtitle": "Plan your sprints with your team in real-time",
     "welcome": "Welcome to Scrum Poker",
     "enterUsername": "Enter your username",
     "username": "Username",
@@ -101,6 +103,31 @@
       "contact": {
         "title": "Contact",
         "text": "If you have any questions about this Privacy Policy, please contact us through our website."
+      }
+    }
+  },
+  "help": {
+    "title": "How to use Scrum Poker",
+    "sections": {
+      "ready": {
+        "title": "Before You Start Estimating",
+        "text": "Before estimating, make sure that the user story is 'ready' and was discussed with the team. A ready story should have clear acceptance criteria, be understood by all team members, and be small enough to complete within a sprint."
+      },
+      "estimating": {
+        "title": "Estimating Using Scrum Poker",
+        "text": "Each team member selects a card that represents their estimate of the effort required. Cards are kept hidden until everyone has voted, preventing bias. This tool helps facilitate this process in real-time with your remote team."
+      },
+      "storyPoints": {
+        "title": "Understanding Story Points",
+        "text": "Story points are an abstract measure representing the complexity of implementing a user story. They consider effort, risk, and uncertainty. The Fibonacci-like sequence (0.5, 1, 2, 3, 5, 8, 13) reflects increasing uncertainty with larger tasks. The coffee cup (☕) means 'I need a break' or 'pass'."
+      },
+      "results": {
+        "title": "Uncovering the Results",
+        "text": "After everyone has voted, click 'Show Cards' to reveal all estimates. If they match, the story is successfully estimated! If estimates differ significantly, discuss the reasons - this often uncovers important details about the story."
+      },
+      "importance": {
+        "title": "Why Estimation Matters",
+        "text": "Well-estimated stories help the product owner judge if the value of a feature is worth the complexity and effort to implement it. It also helps with sprint planning and setting realistic expectations with stakeholders."
       }
     }
   },

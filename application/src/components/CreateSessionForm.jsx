@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import SessionForm from './common/SessionForm';
 
 const CreateSessionForm = ({
@@ -13,7 +12,6 @@ const CreateSessionForm = ({
 }) => {
     return (
         <SessionForm
-            icon={faPlusCircle}
             inputId="session-name"
             inputLabel={t('createSessionLabel')}
             inputValue={sessionName}

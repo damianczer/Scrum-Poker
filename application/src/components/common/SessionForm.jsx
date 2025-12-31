@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FormInput from './FormInput';
 import Button from './Button';
 
 const SessionForm = ({
-    icon,
     inputId,
     inputLabel,
     inputValue,
@@ -19,8 +17,7 @@ const SessionForm = ({
     cancelLabel,
 }) => {
     return (
-        <>
-            <FontAwesomeIcon icon={icon} className="input-icon fade-in" />
+        <div className="session-form">
             <FormInput
                 id={inputId}
                 label={inputLabel}
@@ -37,7 +34,9 @@ const SessionForm = ({
                 onClick={onSubmit}
                 disabled={isLoading}
             >
-                {isLoading ? loadingLabel : submitLabel}
+                {isLoading ? (
+                    <span className="button-spinner"></span>
+                ) : submitLabel}
             </Button>
             <Button
                 variant="cancel"
@@ -46,12 +45,11 @@ const SessionForm = ({
             >
                 {cancelLabel}
             </Button>
-        </>
+        </div>
     );
 };
 
 SessionForm.propTypes = {
-    icon: PropTypes.object.isRequired,
     inputId: PropTypes.string.isRequired,
     inputLabel: PropTypes.string.isRequired,
     inputValue: PropTypes.string.isRequired,

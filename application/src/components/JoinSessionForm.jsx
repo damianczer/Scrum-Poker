@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import SessionForm from './common/SessionForm';
 
 const JoinSessionForm = ({
@@ -13,7 +12,6 @@ const JoinSessionForm = ({
 }) => {
     return (
         <SessionForm
-            icon={faSignInAlt}
             inputId="session-id"
             inputLabel={t('joinSessionLabel')}
             inputValue={sessionId}

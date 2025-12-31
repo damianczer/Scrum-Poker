@@ -9,7 +9,8 @@
 
 .card-selection {
   @include card-styles;
-  width: 70vh;
+  width: 90vw;
+  max-width: 900px;
   justify-content: center;
 }
 
@@ -26,32 +27,86 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: 10px;
+  padding: 10px;
 }
 
 .card-option {
-  width: 60px;
-  height: 100px;
-  border: 1px solid rgb(99, 99, 99);
-  border-radius: 4px;
-  background-color: var(--text-white-color);
-  color: var(--text-black-color);
+  position: relative;
+  width: 64px;
+  height: 96px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  color: var(--text-primary);
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow: hidden;
   @include fade-in;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 2px solid rgba(102, 126, 234, 0.15);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '♠';
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 0.6rem;
+    color: rgba(102, 126, 234, 0.4);
+    font-weight: normal;
+  }
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px) rotateX(5deg);
+    background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+
+    &::before {
+      border-color: rgba(102, 126, 234, 0.3);
+    }
+  }
+
+  &:active {
+    transform: translateY(-4px);
   }
 
   &.selected {
-    background-color: var(--background-color);
-    color: var(--text-white-color);
+    background: var(--gradient-primary);
+    color: #ffffff;
+
+    &::before {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &::after {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &:hover {
+      transform: translateY(-8px) rotateX(5deg) scale(1.02);
+    }
   }
+}
+
+.card-coffee-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .action-buttons {

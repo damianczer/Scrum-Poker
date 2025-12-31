@@ -121,7 +121,11 @@ function Content({ language }) {
   const renderContent = () => {
     if (viewState === VIEW_STATES.GAME || isSessionActive) {
       return (
-        <Suspense fallback={<div className="loading">{tCommon('loading')}</div>}>
+        <Suspense fallback={
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+          </div>
+        }>
           <CardSelection
             users={users}
             showCards={showCards}
@@ -136,7 +140,11 @@ function Content({ language }) {
     }
 
     return (
-      <div className="card fade-in">
+      <>
+        <div className="hero-description fade-in">
+          <h1>{t('heroTitle')}</h1>
+        </div>
+        <div className="card fade-in">
         {viewState === VIEW_STATES.USERNAME && (
           <UsernameForm
             username={username}
@@ -179,7 +187,9 @@ function Content({ language }) {
             t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
           />
         )}
-      </div>
+        </div>
+        <p className="hero-subtitle fade-in">{t('heroSubtitle')}</p>
+      </>
     );
   };
 
