@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faCookieBite } from '../utils/icons';
+import { faUserCircle } from '../utils/icons';
 import FormInput from './common/FormInput';
 import Button from './common/Button';
 
@@ -30,7 +30,7 @@ const UsernameForm = memo(function UsernameForm({
                 {t('submit')}
             </Button>
             <div className="cookies-consent fade-in">
-                <FontAwesomeIcon icon={faCookieBite} className="cookie-icon" />
+                <img src="/cookie.svg" alt="Cookie" className="cookie-icon" />
                 <span className="cookie-text">{t('cookiesConsent')}</span>
             </div>
         </>

@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Scrum Poker" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://scrumpoker.damianczerwinski.pl/" />
+    <meta property="og:url" content="https://www.damianczerwinski.pl/scrum-poker/" />
     <meta property="og:title" content="Scrum Poker - Free Online Planning Poker Tool" />
     <meta property="og:description"
         content="Free real-time Scrum Poker for agile teams. Estimate tasks collaboratively with your team using Fibonacci sequence." />
@@ -29,57 +29,14 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="pl_PL" />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://scrumpoker.damianczerwinski.pl/" />
+    <meta property="twitter:url" content="https://www.damianczerwinski.pl/scrum-poker/" />
     <meta property="twitter:title" content="Scrum Poker - Free Online Planning Poker Tool" />
     <meta property="twitter:description"
         content="Free real-time Scrum Poker for agile teams. Estimate tasks collaboratively with your team using Fibonacci sequence." />
     <meta property="twitter:image" content="/og-image.png" />
-    <link rel="canonical" href="https://scrumpoker.damianczerwinski.pl/" />
+    <link rel="canonical" href="https://www.damianczerwinski.pl/scrum-poker/" />
     <link rel="preconnect" href="https://firestore.googleapis.com" />
     <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
-
-    <style>
-        .loading-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #60a5fa;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-text {
-            margin-top: 20px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #f1f5f9;
-            font-size: 16px;
-            font-weight: 500;
-        }
-    </style>
 </head>
 
 <body>
@@ -90,27 +47,7 @@
         </div>
     </noscript>
 
-    <div id="root">
-        <div class="loading-container" aria-label="Loading application">
-            <div class="loading-spinner" role="status" aria-hidden="true"></div>
-            <p class="loading-text">Loading Scrum Poker...</p>
-        </div>
-    </div>
-
-    <script>
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                var loading = document.querySelector('.loading-container');
-                if (loading) {
-                    loading.style.opacity = '0';
-                    loading.style.transition = 'opacity 0.3s ease';
-                    setTimeout(function () {
-                        loading.style.display = 'none';
-                    }, 300);
-                }
-            }, 100);
-        });
-    </script>
+    <div id="root"></div>
 </body>
 
 </html>

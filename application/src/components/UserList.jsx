@@ -24,7 +24,11 @@ const UserList = memo(function UserList({ users, showCards, language }) {
             style={{ color: showCards ? getCardColor(user.selectedCard) : 'inherit' }}
           >
             {showCards || !user.selectedCard ? (
-              user.selectedCard
+              user.selectedCard === '?' ? (
+                <img src="/coffee.svg" alt="coffee" className="card-coffee-icon" />
+              ) : (
+                user.selectedCard
+              )
             ) : (
               <FontAwesomeIcon icon={faCheckCircle} className="check-icon" />
             )}

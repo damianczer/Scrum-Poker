@@ -2,15 +2,17 @@ import { useState, useContext, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/_header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faMoon, faSun, faShareNodes } from '../utils/icons';
+import { faUserCircle, faMoon, faSun, faShareNodes, faQuestionCircle } from '../utils/icons';
 import { useTranslation } from '../utils/i18n';
 import { ThemeContext } from '../App';
 import { THEMES, LANGUAGES } from '../constants/constants';
 import Modal from './Modal';
+import HelpModal from './HelpModal';
 
 const Header = memo(function Header({ username, onShare, language }) {
   const t = useTranslation(language, 'header');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
   const { theme, toggleTheme, toggleLanguage } = useContext(ThemeContext);
 
   const handleShareClick = useCallback(() => {
@@ -20,6 +22,14 @@ const Header = memo(function Header({ username, onShare, language }) {
 
   const handleCloseModal = useCallback(() => {
     setIsModalVisible(false);
+  }, []);
+
+  const handleHelpClick = useCallback(() => {
+    setIsHelpModalVisible(true);
+  }, []);
+
+  const handleCloseHelpModal = useCallback(() => {
+    setIsHelpModalVisible(false);
   }, []);
 
   const isDarkTheme = theme === THEMES.DARK;
@@ -38,6 +48,15 @@ const Header = memo(function Header({ username, onShare, language }) {
 
       <div className="header-right">
         <div className="header-controls">
+          <button
+            className="control-btn help-toggle"
+            onClick={handleHelpClick}
+            aria-label="Help"
+            title={isEnglish ? 'Help' : 'Pomoc'}
+          >
+            <FontAwesomeIcon icon={faQuestionCircle} />
+          </button>
+
           <button
             className="control-btn language-toggle"
             onClick={toggleLanguage}
@@ -75,6 +94,13 @@ const Header = memo(function Header({ username, onShare, language }) {
           <Modal
             message={t('sessionIdMessage')}
             onClose={handleCloseModal}
+          />
+        )}
+
+        {isHelpModalVisible && (
+          <HelpModal
+            language={language}
+            onClose={handleCloseHelpModal}
           />
         )}
       </div>

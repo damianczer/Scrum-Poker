@@ -1,7 +1,5 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHourglassHalf } from '../utils/icons';
 import Button from './common/Button';
 
 const SessionActions = memo(function SessionActions({
@@ -11,9 +9,7 @@ const SessionActions = memo(function SessionActions({
     t
 }) {
     return (
-        <>
-            <FontAwesomeIcon icon={faHourglassHalf} className="input-icon fade-in" />
-            <p className="choose-option fade-in">{t('chooseOption')}</p>
+        <div className="session-actions">
             <Button onClick={onCreateSession}>
                 {t('createSession')}
             </Button>
@@ -23,7 +19,7 @@ const SessionActions = memo(function SessionActions({
             <Button variant="cancel" onClick={onCancel}>
                 {t('cancel')}
             </Button>
-        </>
+        </div>
     );
 });
 

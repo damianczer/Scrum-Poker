@@ -5,7 +5,8 @@ import {
   faShareNodes,
   faCheckCircle,
   faHourglassHalf,
-  faCookieBite
+  faCookie,
+  faQuestionCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -20,7 +21,8 @@ export const solidIcons = {
   faShareNodes,
   faCheckCircle,
   faHourglassHalf,
-  faCookieBite
+  faCookie,
+  faQuestionCircle
 };
 
 export const brandIcons = {
@@ -35,7 +37,8 @@ export {
   faShareNodes,
   faCheckCircle,
   faHourglassHalf,
-  faCookieBite,
+  faCookie,
+  faQuestionCircle,
   faLinkedin,
   faGithub
 };

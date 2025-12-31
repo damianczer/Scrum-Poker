@@ -1,0 +1,76 @@
+import { useMemo, memo } from 'react';
+import '../styles/_backgroundIcons.scss';
+
+const POKER_ICONS = [
+    '/poker-1.svg',
+    '/poker-2.svg',
+    '/poker-3.svg',
+    '/poker-4.svg',
+    '/poker-5.svg',
+    '/poker-6.svg',
+    '/poker-7.svg',
+    '/poker-8.svg',
+    '/poker-9.svg',
+    '/poker-10.svg',
+    '/poker-11.svg',
+    '/poker-12.svg',
+    '/poker-13.svg',
+    '/poker-14.svg',
+    '/poker-15.svg',
+    '/poker-16.svg',
+];
+
+const BackgroundIcons = memo(function BackgroundIcons() {
+    const icons = useMemo(() => {
+        const items = [];
+        const cols = 6;
+        const rows = 5;
+        const cellWidth = 100 / cols;
+        const cellHeight = 100 / rows;
+
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const icon = POKER_ICONS[Math.floor(Math.random() * POKER_ICONS.length)];
+                const left = col * cellWidth + cellWidth * 0.2 + Math.random() * cellWidth * 0.6;
+                const top = row * cellHeight + cellHeight * 0.2 + Math.random() * cellHeight * 0.6;
+
+                items.push({
+                    id: row * cols + col,
+                    icon,
+                    left: `${left}%`,
+                    top: `${top}%`,
+                    size: 35 + Math.random() * 20,
+                    opacity: 0.08 + Math.random() * 0.06,
+                    rotation: Math.random() * 360,
+                });
+            }
+        }
+
+        return items;
+    }, []);
+
+    return (
+        <div className="background-icons" aria-hidden="true">
+            {icons.map((item) => (
+                <img
+                    key={item.id}
+                    src={item.icon}
+                    alt=""
+                    className="background-icon"
+                    style={{
+                        left: item.left,
+                        top: item.top,
+                        width: `${item.size}px`,
+                        height: `${item.size}px`,
+                        opacity: item.opacity,
+                        transform: `rotate(${item.rotation}deg)`,
+                    }}
+                />
+            ))}
+        </div>
+    );
+});
+
+BackgroundIcons.displayName = 'BackgroundIcons';
+
+export default BackgroundIcons;

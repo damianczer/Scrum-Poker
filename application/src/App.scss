@@ -37,6 +37,25 @@
   justify-content: center;
   gap: 1rem;
   z-index: 9999;
+
+  .loading-text {
+    color: #ffffff;
+  }
+}
+
+.loading-fallback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0a1628 0%, #132035 50%, #1e3a5f 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 9998;
 }
 
 .spinner {

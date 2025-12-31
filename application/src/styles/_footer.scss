@@ -55,13 +55,13 @@
     margin: 0;
 
     a {
-      color: #2563eb;
+      color: #ffffff;
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
 
       &:hover {
-        color: #1d4ed8;
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: underline;
       }
     }
@@ -73,20 +73,20 @@
     gap: var(--spacing-sm);
 
     a {
-      color: rgba(255, 255, 255, 0.8);
+      color: #ffffff;
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 1rem;
       transition: var(--transition);
 
       &:hover {
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: underline;
       }
     }
 
     .separator {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.875rem;
+      color: #ffffff;
+      font-size: 1rem;
       line-height: 1;
     }
   }

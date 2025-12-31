@@ -1,13 +1,22 @@
 import './App.scss';
-import { createContext } from 'react';
+import { createContext, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import Content from './components/Content';
-import Footer from './components/Footer';
 import ErrorBoundary from './components/common/ErrorBoundary';
+import BackgroundIcons from './components/BackgroundIcons';
 import { useSettings } from './hooks/useSettings';
 import { useTranslation } from './utils/i18n';
 
+const Content = lazy(() => import('./components/Content'));
+const Footer = lazy(() => import('./components/Footer'));
+
 export const ThemeContext = createContext();
+
+const LoadingFallback = () => (
+  <div className="loading-fallback">
+    <div className="spinner"></div>
+    <p className="loading-text">Loading...</p>
+  </div>
+);
 
 const ThemeOverlay = ({ language }) => {
   const t = useTranslation(language, 'common');
@@ -52,10 +61,13 @@ function App() {
     >
       <ThemeContext.Provider value={contextValue}>
         {isThemeChanging && <ThemeOverlay language={language} />}
-        <div className="App" data-theme={theme}>
-          <Content language={language} />
-          <Footer />
-        </div>
+        <Suspense fallback={<LoadingFallback />}>
+          <div className="App" data-theme={theme}>
+            <BackgroundIcons />
+            <Content language={language} />
+            <Footer />
+          </div>
+        </Suspense>
       </ThemeContext.Provider>
     </ErrorBoundary>
   );

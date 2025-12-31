@@ -39,6 +39,7 @@ const FormInput = ({
                 onKeyDown={handleKeyDown}
                 autoFocus={autoFocus}
                 disabled={disabled}
+                autoComplete="off"
             />
             {errorMessage && (
                 <div className="error-message fade-in" role="alert">

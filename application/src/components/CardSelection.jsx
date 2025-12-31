@@ -40,7 +40,11 @@ const CardSelection = memo(function CardSelection({
               ariaLabel={`Select card ${card}`}
               aria-pressed={currentUserCard === card}
             >
-              {card}
+              {card === '?' ? (
+                <img src="/coffee.svg" alt="coffee" className="card-coffee-icon" />
+              ) : (
+                card
+              )}
             </Button>
           ))}
         </div>
