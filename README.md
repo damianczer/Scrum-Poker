@@ -12,10 +12,10 @@
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript) | `ES6+` | Programming language |
-| ![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat-square&logo=react) | `19.1.0` | Modern UI Framework |
-| ![Sass](https://img.shields.io/badge/Sass-1.87.0-CC6699?style=flat-square&logo=sass) | `1.87.0` | CSS preprocessor |
-| ![Firebase](https://img.shields.io/badge/Firebase-11.6.1-FFCA28?style=flat-square&logo=firebase) | `11.6.1` | Real-time database |
-| ![Webpack](https://img.shields.io/badge/Webpack-5.99.7-8DD6F9?style=flat-square&logo=webpack) | `5.99.7` | Module bundler |
+| ![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=flat-square&logo=react) | `19.2.3` | Modern UI Framework |
+| ![Sass](https://img.shields.io/badge/Sass-1.97.1-CC6699?style=flat-square&logo=sass) | `1.97.1` | CSS preprocessor |
+| ![Firebase](https://img.shields.io/badge/Firebase-12.7.0-FFCA28?style=flat-square&logo=firebase) | `12.7.0` | Real-time database |
+| ![Webpack](https://img.shields.io/badge/Webpack-5.104.1-8DD6F9?style=flat-square&logo=webpack) | `5.104.1` | Module bundler |
 | ![js-cookie](https://img.shields.io/badge/js--cookie-3.0.5-F7DF1E?style=flat-square&logo=javascript) | `3.0.5` | User preferences management |
 
 Estimate tasks easily with a beautiful, real-time React Application powered by Firebase for Agile teams using Planning Poker methodology.
@@ -35,11 +35,13 @@ Estimate tasks easily with a beautiful, real-time React Application powered by F
 - Smart Calculations - Automatic average and individual estimates.
 - Real-time Sync - Powered by Firebase Realtime Database.
 - Theme Selection - Choose from 5 color themes (Green, Blue, Turquoise, Grey, Orange).
+- Dark/Light Mode - Toggle between dark and light themes.
 - Multi-language Support - English & Polish translations.
 - Persistent Settings - Preferences saved in cookies.
-- Desktop-optimized UI with limited mobile support.
+- PWA Support - Installable as Progressive Web App with offline caching.
+- WCAG Accessibility - Screen reader support, keyboard navigation, focus management.
+- Responsive Design - Optimized for desktop and mobile devices.
 - 100% Real-time - all actions synchronized instantly across all participants.
-- Optimized for production (efficiency, safety, accessibility).
 
 ## 📁 Project Architecture
 
@@ -47,39 +49,82 @@ Estimate tasks easily with a beautiful, real-time React Application powered by F
 Scrum-Poker/
 ├── application/
 │   ├── public/
-│   │   └── index.html                  # HTML entry point
+│   │   ├── assets/                     # Static assets (icons, images)
+│   │   ├── index.html                  # HTML entry point
+│   │   ├── manifest.json               # PWA manifest
+│   │   └── sw.js                       # Service Worker
 │   │
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── common/                 # Reusable UI components
+│   │   │   │   ├── Button.jsx          # Button component
+│   │   │   │   ├── ErrorBoundary.jsx   # Error boundary wrapper
+│   │   │   │   ├── FormInput.jsx       # Form input component
+│   │   │   │   └── SessionForm.jsx     # Session form wrapper
+│   │   │   │
+│   │   │   ├── BackgroundIcons.jsx     # Background poker icons
 │   │   │   ├── CardSelection.jsx       # Card voting component
-│   │   │   ├── Content.jsx             # Main content wrapper
+│   │   │   ├── Content.jsx             # Main content controller
+│   │   │   ├── CreateSessionForm.jsx   # Create session form
 │   │   │   ├── Footer.jsx              # Footer with settings
+│   │   │   ├── GameView.jsx            # Game view wrapper
 │   │   │   ├── Header.jsx              # Application header
+│   │   │   ├── HelpModal.jsx           # Help modal
+│   │   │   ├── JoinSessionForm.jsx     # Join session form
+│   │   │   ├── LegalModal.jsx          # Legal/privacy modal
+│   │   │   ├── LobbyView.jsx           # Lobby view wrapper
 │   │   │   ├── Modal.jsx               # Modal dialogs
-│   │   │   └── UserList.jsx            # Live participants list
+│   │   │   ├── SessionActions.jsx      # Session action buttons
+│   │   │   ├── SessionTimer.jsx        # Session timer component
+│   │   │   ├── ShareModal.jsx          # Share session modal
+│   │   │   ├── UserList.jsx            # Live participants list
+│   │   │   └── UsernameForm.jsx        # Username input form
 │   │   │
-│   │   ├── constants/                  # Application constants
-│   │   ├── hooks/                      # Custom React hooks
-│   │   ├── services/                   # Firebase services
+│   │   ├── constants/
+│   │   │   ├── config.js               # Application configuration
+│   │   │   └── constants.js            # Application constants
+│   │   │
+│   │   ├── context/
+│   │   │   └── AppContext.jsx          # React context provider
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useDebounce.js          # Debounce hook
+│   │   │   ├── useFocusTrap.js         # Focus trap hook (accessibility)
+│   │   │   ├── useSession.js           # Session management hook
+│   │   │   ├── useSettings.js          # Settings management hook
+│   │   │   └── useUrlSession.js        # URL session params hook
+│   │   │
+│   │   ├── services/
+│   │   │   ├── firebaseService.js      # Firebase database operations
+│   │   │   └── index.js                # Services export
 │   │   │
 │   │   ├── styles/
+│   │   │   ├── _backgroundIcons.scss   # Background icons styles
 │   │   │   ├── _body.scss              # Body styles
 │   │   │   ├── _cardSelection.scss     # Card selection styles
 │   │   │   ├── _content.scss           # Content area styles
+│   │   │   ├── _errorBoundary.scss     # Error boundary styles
 │   │   │   ├── _footer.scss            # Footer styles
 │   │   │   ├── _global.scss            # Global styles & variables
 │   │   │   ├── _header.scss            # Header styles
+│   │   │   ├── _helpModal.scss         # Help modal styles
+│   │   │   ├── _legalModal.scss        # Legal modal styles
 │   │   │   ├── _modal.scss             # Modal styles
-│   │   │   └── _userList.scss          # User list styles
+│   │   │   ├── _shareModal.scss        # Share modal styles
+│   │   │   ├── _userList.scss          # User list styles
+│   │   │   └── _variables.scss         # SCSS variables
 │   │   │
 │   │   ├── translations/
-│   │   │   ├── cardSelection.js        # Card selection translations
-│   │   │   ├── content.js              # Content translations
-│   │   │   ├── footer.js               # Footer translations
-│   │   │   └── header.js               # Header translations
+│   │   │   ├── en.json                 # English translations
+│   │   │   └── pl.json                 # Polish translations
 │   │   │
-│   │   ├── types/                      # Type definitions
-│   │   ├── utils/                      # Utility functions
+│   │   ├── utils/
+│   │   │   ├── cardUtils.js            # Card utility functions
+│   │   │   ├── i18n.js                 # Internationalization utility
+│   │   │   ├── icons.js                # FontAwesome icons
+│   │   │   ├── logger.js               # Logging utility
+│   │   │   ├── serviceWorker.js        # Service Worker registration
+│   │   │   └── validation.js           # Validation functions
 │   │   │
 │   │   ├── App.jsx                     # Root component
 │   │   ├── App.scss                    # Main application styles
