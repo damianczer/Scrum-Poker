@@ -26,6 +26,13 @@
     box-shadow:
         0 25px 50px -12px rgba(0, 0, 0, 0.25),
         0 12px 24px -8px rgba(0, 0, 0, 0.15);
+
+    [data-theme="dark"] & {
+        background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+        box-shadow:
+            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+            0 12px 24px -8px rgba(0, 0, 0, 0.4);
+    }
 }
 
 .help-modal-header {

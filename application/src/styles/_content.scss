@@ -37,6 +37,21 @@
   width: 100%;
   max-width: 420px;
   min-height: 400px;
+
+  [data-theme="dark"] & {
+    background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.4),
+      0 4px 10px -3px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      box-shadow:
+        0 15px 35px -5px rgba(0, 0, 0, 0.5),
+        0 6px 15px -3px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+  }
 }
 
 .welcome-message {
@@ -45,6 +60,10 @@
   width: 100%;
   text-align: center;
   color: var(--text-black-color);
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .option-button {
@@ -68,12 +87,31 @@
   max-width: 320px;
   text-align: center;
   color: var(--text-black-color);
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .session-input,
 .username-input {
   @include input-styles;
   text-align: center;
+
+  [data-theme="dark"] & {
+    background: #1e3a5f;
+    border-color: #2d5a87;
+    color: var(--text-primary);
+
+    &::placeholder {
+      color: #6b9fd4;
+    }
+
+    &:focus {
+      border-color: #00d9ff;
+      background: #132035;
+    }
+  }
 }
 
 .error-message {
@@ -120,11 +158,19 @@
 .cookie-text {
   color: var(--text-black-color);
   font-size: 14px;
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .choose-option {
   color: var(--text-black-color);
   font-size: 14px;
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .icon-label-container {
@@ -138,6 +184,10 @@
   font-size: 4em;
   margin-bottom: 20px;
   color: #b3b3b3;
+
+  [data-theme="dark"] & {
+    color: #ffffff;
+  }
 }
 
 .loading-container {

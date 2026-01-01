@@ -26,6 +26,10 @@
     transform: none;
     box-shadow: none;
   }
+
+  [data-theme="dark"] & {
+    background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+  }
 }
 
 .share-modal-title {
@@ -33,6 +37,10 @@
   font-size: 20px;
   font-weight: 600;
   color: #1f2937;
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .share-modal-section {
@@ -63,6 +71,10 @@
   font-size: 14px;
   color: #1f2937;
   font-weight: 500;
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .share-modal-session-id {
@@ -74,6 +86,11 @@
   padding: 6px 12px;
   border-radius: 6px;
   word-break: break-all;
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .share-modal-divider {
@@ -88,6 +105,10 @@
     flex: 1;
     height: 1px;
     background: rgba(0, 0, 0, 0.1);
+
+    [data-theme="dark"] & {
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
 
   span {
@@ -95,6 +116,10 @@
     font-size: 12px;
     color: #1f2937;
     white-space: nowrap;
+
+    [data-theme="dark"] & {
+      color: var(--text-primary);
+    }
   }
 }
 
