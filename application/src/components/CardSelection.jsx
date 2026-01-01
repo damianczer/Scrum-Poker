@@ -4,6 +4,7 @@ import '../styles/_cardSelection.scss';
 import { useTranslation } from '../utils/i18n';
 import { POKER_CARDS } from '../constants/constants';
 import { getCurrentUserCard } from '../utils/cardUtils';
+import { getAssetPath } from '../constants/config';
 import UserList from './UserList';
 import Button from './common/Button';
 import ShareModal from './ShareModal';
@@ -81,7 +82,7 @@ const CardSelection = memo(function CardSelection({
               aria-checked={currentUserCard === card}
             >
               {card === '?' ? (
-                <img src="/assets/icons/coffee.svg" alt="" className="card-coffee-icon" aria-hidden="true" />
+                <img src={getAssetPath('/assets/icons/coffee.svg')} alt="" className="card-coffee-icon" aria-hidden="true" />
               ) : (
                 card
               )}

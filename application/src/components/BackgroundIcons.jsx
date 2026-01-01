@@ -1,23 +1,24 @@
 import { useMemo, memo, useState, useEffect } from 'react';
 import '../styles/_backgroundIcons.scss';
+import { getAssetPath } from '../constants/config';
 
 const POKER_ICONS = [
-    '/assets/icons/poker-1.svg',
-    '/assets/icons/poker-2.svg',
-    '/assets/icons/poker-3.svg',
-    '/assets/icons/poker-4.svg',
-    '/assets/icons/poker-5.svg',
-    '/assets/icons/poker-6.svg',
-    '/assets/icons/poker-7.svg',
-    '/assets/icons/poker-8.svg',
-    '/assets/icons/poker-9.svg',
-    '/assets/icons/poker-10.svg',
-    '/assets/icons/poker-11.svg',
-    '/assets/icons/poker-12.svg',
-    '/assets/icons/poker-13.svg',
-    '/assets/icons/poker-14.svg',
-    '/assets/icons/poker-15.svg',
-    '/assets/icons/poker-16.svg',
+    getAssetPath('/assets/icons/poker-1.svg'),
+    getAssetPath('/assets/icons/poker-2.svg'),
+    getAssetPath('/assets/icons/poker-3.svg'),
+    getAssetPath('/assets/icons/poker-4.svg'),
+    getAssetPath('/assets/icons/poker-5.svg'),
+    getAssetPath('/assets/icons/poker-6.svg'),
+    getAssetPath('/assets/icons/poker-7.svg'),
+    getAssetPath('/assets/icons/poker-8.svg'),
+    getAssetPath('/assets/icons/poker-9.svg'),
+    getAssetPath('/assets/icons/poker-10.svg'),
+    getAssetPath('/assets/icons/poker-11.svg'),
+    getAssetPath('/assets/icons/poker-12.svg'),
+    getAssetPath('/assets/icons/poker-13.svg'),
+    getAssetPath('/assets/icons/poker-14.svg'),
+    getAssetPath('/assets/icons/poker-15.svg'),
+    getAssetPath('/assets/icons/poker-16.svg'),
 ];
 
 const BackgroundIcons = memo(function BackgroundIcons() {

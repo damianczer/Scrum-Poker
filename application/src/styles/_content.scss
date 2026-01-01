@@ -123,18 +123,18 @@
 .option-button {
   @include button-styles(var(--button-background-color), var(--button-hover-background-color));
   margin: 8px 0;
-  background: #2563eb;
+  background: $color-primary-hover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 
   &:hover:not(:disabled) {
-    background: #1d4ed8;
+    background: $color-primary-dark;
   }
 
   &.cancel {
-    background: #6b7280;
+    background: $color-gray;
 
     &:hover {
-      background: #4b5563;
+      background: $color-gray-hover;
     }
   }
 
@@ -163,12 +163,12 @@
   }
 
   &.input-error {
-    border-color: #ff6b6b;
+    border-color: $color-danger;
   }
 
   @include dark-theme {
     background: $dark-bg-primary;
-    border-color: #2d5a87;
+    border-color: $dark-border;
     color: var(--text-primary);
 
     &::placeholder {
@@ -176,13 +176,13 @@
     }
 
     &:focus {
-      border-color: #00d9ff;
-      background: #132035;
+      border-color: $dark-accent;
+      background: $dark-bg-secondary;
     }
 
     &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.25);
+      box-shadow: 0 0 0 3px $dark-accent-glow;
     }
 
     &.input-error {
@@ -249,10 +249,10 @@
 .input-icon {
   font-size: 4em;
   margin-bottom: 20px;
-  color: #6b7280;
+  color: $color-gray;
 
   @include dark-theme {
-    color: #ffffff;
+    color: $color-white;
   }
 }
 

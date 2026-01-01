@@ -1,0 +1,17 @@
+{
+    "name": "Scrum Poker",
+    "short_name": "Scrum Poker",
+    "description": "Free real-time Scrum Poker for agile teams. Estimate tasks collaboratively with your team using Fibonacci sequence.",
+    "start_url": "/scrum-poker/",
+    "scope": "/scrum-poker/",
+    "display": "standalone",
+    "background_color": "#0a1628",
+    "theme_color": "#0f172a",
+    "orientation": "portrait-primary",
+    "categories": [
+        "productivity",
+        "utilities"
+    ],
+    "lang": "en",
+    "dir": "ltr"
+}

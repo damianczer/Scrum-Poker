@@ -6,6 +6,7 @@ import { faUserCircle, faMoon, faSun, faQuestionCircle } from '../utils/icons';
 import { useTranslation } from '../utils/i18n';
 import { ThemeContext } from '../App';
 import { THEMES, LANGUAGES } from '../constants/constants';
+import { getAssetPath } from '../constants/config';
 import Modal from './Modal';
 import HelpModal from './HelpModal';
 
@@ -35,7 +36,7 @@ const Header = memo(function Header({ username, language }) {
       <div className="header-left">
         <div className="logo">
           <a href="/" aria-label="Scrum Poker - Go to homepage">
-            <img src="/assets/icons/logo.svg" alt="" className="logo-img" aria-hidden="true" />
+            <img src={getAssetPath('/assets/icons/logo.svg')} alt="" className="logo-img" aria-hidden="true" />
             <span>Scrum Poker</span>
           </a>
         </div>

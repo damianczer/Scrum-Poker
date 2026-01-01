@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '../utils/icons';
 import FormInput from './common/FormInput';
 import Button from './common/Button';
+import { getAssetPath } from '../constants/config';
 
 const UsernameForm = memo(function UsernameForm({
     username,
@@ -30,7 +31,7 @@ const UsernameForm = memo(function UsernameForm({
                 {t('submit')}
             </Button>
             <div className="cookies-consent fade-in" role="note">
-                <img src="/assets/icons/cookie.svg" alt="" className="cookie-icon" aria-hidden="true" />
+                <img src={getAssetPath('/assets/icons/cookie.svg')} alt="" className="cookie-icon" aria-hidden="true" />
                 <span className="cookie-text">{t('cookiesConsent')}</span>
             </div>
         </>

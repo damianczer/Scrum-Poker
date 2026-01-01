@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '../utils/icons';
 import { useTranslation } from '../utils/i18n';
 import { getCardColor, calculateAverage } from '../utils/cardUtils';
+import { getAssetPath } from '../constants/config';
 import '../styles/_userList.scss';
 
 const UserList = memo(function UserList({ users, showCards, language }) {
@@ -36,7 +37,7 @@ const UserList = memo(function UserList({ users, showCards, language }) {
           >
             {showCards || !user.selectedCard ? (
               user.selectedCard === '?' ? (
-                <img src="/assets/icons/coffee.svg" alt="Coffee break" className="card-coffee-icon" />
+                <img src={getAssetPath('/assets/icons/coffee.svg')} alt="Coffee break" className="card-coffee-icon" />
               ) : (
                 user.selectedCard || <span className="sr-only">No vote</span>
               )
