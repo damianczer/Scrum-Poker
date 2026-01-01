@@ -1,3 +1,7 @@
+// ==========================================================================
+// BACKGROUND ICONS - Decorative floating icons
+// ==========================================================================
+
 .background-icons {
     position: fixed;
     top: 0;
@@ -11,6 +15,7 @@
 
 .background-icon {
     position: absolute;
+    -webkit-user-select: none;
     user-select: none;
     filter: brightness(0) invert(1);
 }

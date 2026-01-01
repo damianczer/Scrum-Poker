@@ -1,25 +1,24 @@
-@use 'global';
+@use 'global' as *;
+
+// ==========================================================================
+// OVERLAY
+// ==========================================================================
 
 .share-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-out;
+  @include modal-overlay;
+  animation: modalFadeIn 0.3s ease-out;
 }
 
+// ==========================================================================
+// MODAL CONTAINER
+// ==========================================================================
+
 .share-modal {
-  @include global.card-styles;
+  @include card-styles;
   min-width: 320px;
   max-width: 400px;
   padding: 30px;
-  animation: scaleIn 0.3s ease-out;
+  animation: modalScaleIn 0.3s ease-out;
   box-shadow: none;
 
   &:hover {
@@ -27,78 +26,85 @@
     box-shadow: none;
   }
 
-  [data-theme="dark"] & {
-    background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+  @include dark-theme {
+    background: linear-gradient(145deg, $dark-bg-primary 0%, #132035 100%);
   }
 }
+
+// ==========================================================================
+// TITLE
+// ==========================================================================
 
 .share-modal-title {
   margin: 0 0 20px 0;
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
-
-  [data-theme="dark"] & {
-    color: var(--text-primary);
-  }
+  @include text-primary;
 }
 
+// ==========================================================================
+// SECTION LAYOUT
+// ==========================================================================
+
 .share-modal-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column-center;
   width: 100%;
   margin: 10px 0;
 }
 
+// ==========================================================================
+// ICON
+// ==========================================================================
+
 .share-modal-icon {
+  @include flex-center;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #22c55e, #16a34a);
+  background: linear-gradient(145deg, $color-success, #16a34a);
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 4px 12px rgba($color-success, 0.3);
 }
+
+// ==========================================================================
+// MESSAGE & SESSION ID
+// ==========================================================================
 
 .share-modal-message {
   margin: 0;
   font-size: 14px;
-  color: #1f2937;
   font-weight: 500;
-
-  [data-theme="dark"] & {
-    color: var(--text-primary);
-  }
+  @include text-primary;
 }
 
 .share-modal-session-id {
   margin: 8px 0 0 0;
   font-size: 12px;
-  color: #1f2937;
   font-family: monospace;
   background: rgba(0, 0, 0, 0.05);
   padding: 6px 12px;
   border-radius: 6px;
   word-break: break-all;
+  @include text-primary;
 
-  [data-theme="dark"] & {
-    color: var(--text-primary);
+  @include dark-theme {
     background: rgba(255, 255, 255, 0.1);
   }
 }
+
+// ==========================================================================
+// DIVIDER
+// ==========================================================================
 
 .share-modal-divider {
   display: flex;
   align-items: center;
   width: 100%;
   margin: 20px 0;
-  
+
   &::before,
   &::after {
     content: '';
@@ -106,7 +112,7 @@
     height: 1px;
     background: rgba(0, 0, 0, 0.1);
 
-    [data-theme="dark"] & {
+    @include dark-theme {
       background: rgba(255, 255, 255, 0.2);
     }
   }
@@ -114,14 +120,14 @@
   span {
     padding: 0 15px;
     font-size: 12px;
-    color: #1f2937;
     white-space: nowrap;
-
-    [data-theme="dark"] & {
-      color: var(--text-primary);
-    }
+    @include text-primary;
   }
 }
+
+// ==========================================================================
+// BUTTONS
+// ==========================================================================
 
 .share-link-button,
 .share-close-button {
@@ -139,50 +145,35 @@
   font-weight: 600;
   border: none;
   padding: 14px 28px;
-  transition: all 0.3s ease;
+  transition: $transition-base;
+  cursor: pointer;
 }
 
 .share-link-button {
-  background: #3b82f6;
+  background: $color-primary;
   color: #fff;
-}
 
-.share-link-button:hover {
-  background: #2563eb;
+  &:hover {
+    background: #2563eb;
+  }
 }
 
 .share-close-button {
   background: #6b7280 !important;
   color: #ffffff !important;
   border: none !important;
-}
 
-.share-close-button:hover {
-  background: #4b5563 !important;
-  color: #ffffff !important;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+  &:hover {
+    background: #4b5563 !important;
+    color: #ffffff !important;
   }
 }
 
-@keyframes scaleIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+// ==========================================================================
+// RESPONSIVE STYLES
+// ==========================================================================
 
-@media (max-width: 480px) {
+@include mobile {
   .share-modal {
     min-width: auto;
     max-width: calc(100% - 32px);

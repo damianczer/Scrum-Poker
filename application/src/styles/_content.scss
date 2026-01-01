@@ -1,11 +1,12 @@
 @use 'global' as *;
 
+// ==========================================================================
+// CONTENT CONTAINER
+// ==========================================================================
+
 .content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-column-center;
   flex: 1;
-  flex-direction: column;
   padding: var(--spacing-lg);
   background: transparent;
   overflow-y: auto;
@@ -13,6 +14,10 @@
   max-width: 100%;
   box-sizing: border-box;
 }
+
+// ==========================================================================
+// HERO SECTION
+// ==========================================================================
 
 .hero-description {
   text-align: center;
@@ -25,7 +30,7 @@
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-    @media (max-width: 480px) {
+    @include mobile {
       font-size: 1.35rem;
     }
   }
@@ -39,6 +44,10 @@
   opacity: 0.9;
 }
 
+// ==========================================================================
+// CARD COMPONENT
+// ==========================================================================
+
 .card {
   @include card-styles;
   width: 100%;
@@ -46,16 +55,16 @@
   min-height: 400px;
   box-sizing: border-box;
 
-  @media (max-width: 480px) {
+  @include mobile {
     max-width: calc(100% - 16px);
-    min-height: auto;
+    min-height: 0;
     padding: 24px 16px;
     margin: 0 8px;
     border-radius: var(--radius-md);
   }
 
-  [data-theme="dark"] & {
-    background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+  @include dark-theme {
+    background: linear-gradient(145deg, $dark-bg-primary 0%, #132035 100%);
     box-shadow:
       0 10px 25px -5px rgba(0, 0, 0, 0.4),
       0 4px 10px -3px rgba(0, 0, 0, 0.3),
@@ -70,17 +79,37 @@
   }
 }
 
+// ==========================================================================
+// MESSAGES & LABELS
+// ==========================================================================
+
 .welcome-message {
   margin: 10px 0;
   font-size: 18px;
   width: 100%;
   text-align: center;
-  color: var(--text-black-color);
-
-  [data-theme="dark"] & {
-    color: var(--text-primary);
-  }
+  @include text-primary;
 }
+
+.session-label,
+.username-label {
+  margin: 10px 0;
+  font-size: 16px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  @include text-primary;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}
+
+// ==========================================================================
+// BUTTONS
+// ==========================================================================
 
 .option-button {
   @include button-styles(var(--button-background-color), var(--button-hover-background-color));
@@ -95,27 +124,17 @@
   }
 }
 
-.session-label,
-.username-label {
-  margin: 10px 0;
-  font-size: 16px;
-  width: 100%;
-  max-width: 320px;
-  text-align: center;
-  color: var(--text-black-color);
-
-  [data-theme="dark"] & {
-    color: var(--text-primary);
-  }
-}
+// ==========================================================================
+// FORM INPUTS
+// ==========================================================================
 
 .session-input,
 .username-input {
   @include input-styles;
   text-align: center;
 
-  [data-theme="dark"] & {
-    background: #1e3a5f;
+  @include dark-theme {
+    background: $dark-bg-primary;
     border-color: #2d5a87;
     color: var(--text-primary);
 
@@ -130,34 +149,39 @@
   }
 }
 
-.error-message {
-  color: red;
-  font-size: 12px;
-  text-align: center;
-}
+// ==========================================================================
+// LAYOUT CONTAINERS
+// ==========================================================================
 
 .session-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-column-center;
   width: 100%;
   height: 100%;
   gap: var(--spacing-sm);
 }
 
 .session-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-column-center;
   width: 100%;
   gap: var(--spacing-md);
 }
 
+.icon-label-container {
+  @include flex-column-center;
+  margin-bottom: 10px;
+}
+
+// ==========================================================================
+// UTILITY CLASSES
+// ==========================================================================
+
 .fade-in {
   @include fade-in;
 }
+
+// ==========================================================================
+// COOKIES CONSENT
+// ==========================================================================
 
 .cookies-consent {
   display: flex;
@@ -172,45 +196,30 @@
 }
 
 .cookie-text {
-  color: var(--text-black-color);
+  @include text-primary;
   font-size: 14px;
-
-  [data-theme="dark"] & {
-    color: var(--text-primary);
-  }
 }
 
-.choose-option {
-  color: var(--text-black-color);
-  font-size: 14px;
-
-  [data-theme="dark"] & {
-    color: var(--text-primary);
-  }
-}
-
-.icon-label-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-}
+// ==========================================================================
+// ICONS
+// ==========================================================================
 
 .input-icon {
   font-size: 4em;
   margin-bottom: 20px;
   color: #b3b3b3;
 
-  [data-theme="dark"] & {
+  @include dark-theme {
     color: #ffffff;
   }
 }
 
+// ==========================================================================
+// LOADING STATES
+// ==========================================================================
+
 .loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-column-center;
   min-height: 200px;
   gap: var(--spacing-md);
 }
@@ -219,7 +228,7 @@
   width: 48px;
   height: 48px;
   border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #3b82f6;
+  border-top-color: $color-primary;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -234,16 +243,20 @@
   display: inline-block;
 }
 
+.loading-text {
+  @include text-primary;
+  font-size: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+// ==========================================================================
+// ANIMATIONS
+// ==========================================================================
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
-}
-
-.loading-text {
-  color: var(--text-black-color);
-  font-size: 16px;
-  animation: pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -258,27 +271,11 @@
   }
 }
 
-.skeleton {
-  background: linear-gradient(90deg,
-      var(--border-color) 25%,
-      var(--background-color) 50%,
-      var(--border-color) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: var(--radius);
-}
+// ==========================================================================
+// RESPONSIVE STYLES
+// ==========================================================================
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-@media (max-width: 480px) {
+@include mobile {
   .content {
     padding: var(--spacing-md) var(--spacing-sm);
   }
@@ -326,17 +323,4 @@
   .cookie-text {
     font-size: 12px;
   }
-}
-
-.skeleton-card {
-  @extend .skeleton;
-  width: 60px;
-  height: 80px;
-}
-
-.skeleton-text {
-  @extend .skeleton;
-  height: 20px;
-  width: 100%;
-  margin: 8px 0;
 }
