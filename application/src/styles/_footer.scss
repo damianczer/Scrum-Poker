@@ -90,4 +90,49 @@
       line-height: 1;
     }
   }
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-md) var(--spacing-lg);
+
+    .footer-content {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .copyright,
+    .created-by {
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      a {
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--spacing-sm) var(--spacing-md);
+
+    .copyright,
+    .created-by {
+      font-size: 0.9rem;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+    }
+
+    .social-icons a {
+      width: 28px;
+      height: 28px;
+
+      svg {
+        font-size: 0.85rem;
+      }
+    }
+  }
 }

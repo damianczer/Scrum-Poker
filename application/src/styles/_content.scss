@@ -8,7 +8,10 @@
   flex-direction: column;
   padding: var(--spacing-lg);
   background: transparent;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-description {
@@ -21,6 +24,10 @@
     font-weight: 700;
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 480px) {
+      font-size: 1.35rem;
+    }
   }
 }
 
@@ -37,6 +44,15 @@
   width: 100%;
   max-width: 420px;
   min-height: 400px;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    max-width: calc(100% - 16px);
+    min-height: auto;
+    padding: 24px 16px;
+    margin: 0 8px;
+    border-radius: var(--radius-md);
+  }
 
   [data-theme="dark"] & {
     background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
@@ -259,6 +275,56 @@
 
   100% {
     background-position: 200% 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .option-button {
+    padding: 12px 20px;
+    font-size: 14px;
+    max-width: 280px;
+  }
+
+  .session-actions {
+    gap: var(--spacing-xs);
+  }
+
+  .session-label,
+  .username-label {
+    font-size: 14px;
+  }
+
+  .session-input,
+  .username-input {
+    max-width: 280px;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .welcome-message {
+    font-size: 16px;
+  }
+
+  .input-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+  }
+
+  .cookies-consent {
+    margin-top: 20px;
+  }
+
+  .cookie-text {
+    font-size: 12px;
   }
 }
 

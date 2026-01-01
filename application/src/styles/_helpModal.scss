@@ -111,11 +111,11 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: rgba(102, 126, 234, 0.3);
+        background: rgba(100, 100, 100, 0.4);
         border-radius: 4px;
 
         &:hover {
-            background: rgba(102, 126, 234, 0.5);
+            background: rgba(100, 100, 100, 0.6);
         }
     }
 
@@ -153,5 +153,33 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .help-modal-overlay {
+        padding: var(--spacing-md);
+    }
+
+    .help-modal {
+        max-width: 90%;
+        max-height: 70vh;
+    }
+
+    .help-modal-header {
+        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+
+        h2 {
+            font-size: 1.1rem;
+        }
+    }
+
+    .help-modal-content {
+        padding: var(--spacing-md);
+        font-size: 0.85rem;
+
+        h3 {
+            font-size: 0.95rem;
+        }
     }
 }

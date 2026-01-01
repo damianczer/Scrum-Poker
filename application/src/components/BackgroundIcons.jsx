@@ -1,4 +1,4 @@
-import { useMemo, memo } from 'react';
+import { useMemo, memo, useState, useEffect } from 'react';
 import '../styles/_backgroundIcons.scss';
 
 const POKER_ICONS = [
@@ -21,10 +21,20 @@ const POKER_ICONS = [
 ];
 
 const BackgroundIcons = memo(function BackgroundIcons() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const icons = useMemo(() => {
         const items = [];
-        const cols = 6;
-        const rows = 5;
+        const cols = isMobile ? 3 : 6;
+        const rows = isMobile ? 4 : 5;
         const cellWidth = 100 / cols;
         const cellHeight = 100 / rows;
 
@@ -39,7 +49,7 @@ const BackgroundIcons = memo(function BackgroundIcons() {
                     icon,
                     left: `${left}%`,
                     top: `${top}%`,
-                    size: 35 + Math.random() * 20,
+                    size: isMobile ? 28 + Math.random() * 15 : 35 + Math.random() * 20,
                     opacity: 0.08 + Math.random() * 0.06,
                     rotation: Math.random() * 360,
                 });
@@ -47,7 +57,7 @@ const BackgroundIcons = memo(function BackgroundIcons() {
         }
 
         return items;
-    }, []);
+    }, [isMobile]);
 
     return (
         <div className="background-icons" aria-hidden="true">

@@ -146,35 +146,70 @@
   }
 
   @media (max-width: 768px) {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+
+    .header-left {
+      margin-left: 0;
+    }
 
     .logo a {
-      font-size: 1.15rem;
+      font-size: 2.2rem;
 
-      &::before {
-        font-size: 1.3rem;
+      .logo-img {
+        width: 52px;
+        height: 52px;
       }
     }
 
     .header-right {
       gap: var(--spacing-sm);
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .control-btn {
       width: 36px;
       height: 36px;
+      background: rgba(30, 58, 95, 0.9);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
-    .user-info .username {
-      display: none;
+    .user-info {
+      height: 36px;
+      padding: 0 var(--spacing-sm);
+      background: rgba(30, 58, 95, 0.9);
+      border-color: rgba(255, 255, 255, 0.25);
+
+      .username {
+        display: inline;
+        max-width: none;
+      }
     }
 
     .share-button {
       padding: var(--spacing-xs) var(--spacing-sm);
       font-size: 0.75rem;
+      background: rgba(30, 58, 95, 0.9);
+      border-color: rgba(255, 255, 255, 0.25);
 
       span {
         display: none;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logo a {
+      font-size: 1.9rem;
+
+      .logo-img {
+        width: 44px;
+        height: 44px;
       }
     }
   }

@@ -181,3 +181,33 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 480px) {
+  .share-modal {
+    min-width: auto;
+    max-width: calc(100% - 32px);
+    padding: 20px;
+    margin: 0 16px;
+  }
+
+  .share-modal-title {
+    font-size: 18px;
+  }
+
+  .share-modal-message {
+    font-size: 13px;
+  }
+
+  .share-modal-session-id {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .share-link-button,
+  .share-close-button {
+    max-width: 100%;
+    min-height: 44px;
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+}

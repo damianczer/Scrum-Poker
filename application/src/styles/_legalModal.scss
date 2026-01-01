@@ -77,6 +77,38 @@
     font-size: 0.9rem;
     line-height: 1.6;
 
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(100, 100, 100, 0.4);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(100, 100, 100, 0.6);
+        }
+    }
+
+    [data-theme="dark"] & {
+        &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+
     h3 {
         font-size: 1rem;
         font-weight: 600;
@@ -122,5 +154,33 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-modal-overlay {
+        padding: var(--spacing-md);
+    }
+
+    .legal-modal {
+        max-width: 90%;
+        max-height: 70vh;
+    }
+
+    .legal-modal-header {
+        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+
+        h2 {
+            font-size: 1.1rem;
+        }
+    }
+
+    .legal-modal-content {
+        padding: var(--spacing-md);
+        font-size: 0.85rem;
+
+        h3 {
+            font-size: 0.95rem;
+        }
     }
 }
