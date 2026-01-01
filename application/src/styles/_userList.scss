@@ -30,11 +30,20 @@
     width: calc(50% - 4px);
     min-width: 280px;
   }
+
+  [data-theme="dark"] & {
+    background-color: #1e3a5f;
+    border-color: #2d5a87;
+  }
 }
 
 .username {
   font-weight: bold;
   color: var(--text-black-color);
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }
 
 .selected-card {
@@ -76,8 +85,18 @@
   p {
     margin: 0;
   }
+
+  [data-theme="dark"] & {
+    background-color: #1e3a5f;
+    border-color: #2d5a87;
+    color: var(--text-primary);
+  }
 }
 
 .average-value {
   color: var(--text-black-color);
+
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+  }
 }

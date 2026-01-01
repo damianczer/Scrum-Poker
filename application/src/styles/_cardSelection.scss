@@ -42,6 +42,14 @@
   width: 90vw;
   max-width: 900px;
   justify-content: center;
+
+  [data-theme="dark"] & {
+    background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.4),
+      0 4px 10px -3px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
 }
 
 .option-button {
@@ -80,6 +88,31 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   overflow: hidden;
   @include fade-in;
+
+  [data-theme="dark"] & {
+    background: linear-gradient(145deg, #2d5a87 0%, #1e3a5f 100%);
+    color: #ffffff;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &::before {
+      border-color: rgba(0, 217, 255, 0.3);
+    }
+
+    &::after {
+      color: rgba(0, 217, 255, 0.6);
+    }
+
+    &:hover {
+      background: linear-gradient(145deg, #3d6a97 0%, #2d5a87 100%);
+
+      &::before {
+        border-color: rgba(0, 217, 255, 0.5);
+      }
+    }
+  }
 
   &::before {
     content: '';

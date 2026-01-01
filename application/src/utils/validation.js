@@ -21,6 +21,10 @@ export const validateSessionName = (sessionName) => {
         return { isValid: false, errorKey: 'sessionNameError' };
     }
 
+    if (trimmed.length > SESSION_CONFIG.MAX_SESSION_NAME_LENGTH) {
+        return { isValid: false, errorKey: 'sessionNameErrorLong' };
+    }
+
     return { isValid: true, errorKey: null };
 };
 
