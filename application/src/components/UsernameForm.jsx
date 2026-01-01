@@ -14,7 +14,7 @@ const UsernameForm = memo(function UsernameForm({
 }) {
     return (
         <>
-            <FontAwesomeIcon icon={faUserCircle} className="input-icon fade-in" />
+            <FontAwesomeIcon icon={faUserCircle} className="input-icon fade-in" aria-hidden="true" />
             <FormInput
                 id="username"
                 label={t('enterUsername')}
@@ -29,8 +29,8 @@ const UsernameForm = memo(function UsernameForm({
             <Button onClick={onSubmit}>
                 {t('submit')}
             </Button>
-            <div className="cookies-consent fade-in">
-                <img src="/cookie.svg" alt="Cookie" className="cookie-icon" />
+            <div className="cookies-consent fade-in" role="note">
+                <img src="/assets/icons/cookie.svg" alt="" className="cookie-icon" aria-hidden="true" />
                 <span className="cookie-text">{t('cookiesConsent')}</span>
             </div>
         </>

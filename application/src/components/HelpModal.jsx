@@ -1,10 +1,12 @@
 import { useEffect, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from '../utils/i18n';
+import useFocusTrap from '../hooks/useFocusTrap';
 import '../styles/_helpModal.scss';
 
 const HelpModal = memo(function HelpModal({ language, onClose }) {
   const t = useTranslation(language, 'help');
+  const focusTrapRef = useFocusTrap();
 
   const handleClose = useCallback(() => {
     onClose?.();
@@ -37,17 +39,19 @@ const HelpModal = memo(function HelpModal({ language, onClose }) {
       className="help-modal-overlay" 
       role="dialog" 
       aria-modal="true"
+      aria-labelledby="help-modal-title"
       onClick={handleOverlayClick}
+      ref={focusTrapRef}
     >
       <div className="help-modal">
         <div className="help-modal-header">
-          <h2>{t('title')}</h2>
+          <h2 id="help-modal-title">{t('title')}</h2>
           <button 
             className="help-modal-close" 
             onClick={handleClose}
-            aria-label="Close"
+            aria-label={t('close') || 'Close help dialog'}
           >
-            ×
+            <span aria-hidden="true">×</span>
           </button>
         </div>
         <div className="help-modal-content">

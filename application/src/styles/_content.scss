@@ -9,8 +9,6 @@
   flex: 1;
   padding: var(--spacing-lg);
   background: transparent;
-  overflow-y: auto;
-  overflow-x: hidden;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -102,9 +100,20 @@
 }
 
 .error-message {
-  color: red;
-  font-size: 12px;
+  color: #ff6b6b;
+  font-size: 14px;
   text-align: center;
+  font-weight: 500;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  margin-top: 8px;
+
+  @include dark-theme {
+    color: #ff8a8a;
+    background: rgba(255, 107, 107, 0.15);
+  }
 }
 
 // ==========================================================================
@@ -114,12 +123,26 @@
 .option-button {
   @include button-styles(var(--button-background-color), var(--button-hover-background-color));
   margin: 8px 0;
+  background: #2563eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+  &:hover:not(:disabled) {
+    background: #1d4ed8;
+  }
 
   &.cancel {
     background: #6b7280;
 
     &:hover {
       background: #4b5563;
+    }
+  }
+
+  @include dark-theme {
+    background: $color-primary;
+    
+    &:hover:not(:disabled) {
+      background: $color-primary-hover;
     }
   }
 }
@@ -133,6 +156,16 @@
   @include input-styles;
   text-align: center;
 
+  &:focus-visible {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  }
+
+  &.input-error {
+    border-color: #ff6b6b;
+  }
+
   @include dark-theme {
     background: $dark-bg-primary;
     border-color: #2d5a87;
@@ -145,6 +178,15 @@
     &:focus {
       border-color: #00d9ff;
       background: #132035;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.25);
+    }
+
+    &.input-error {
+      border-color: #ff8a8a;
     }
   }
 }
@@ -207,7 +249,7 @@
 .input-icon {
   font-size: 4em;
   margin-bottom: 20px;
-  color: #b3b3b3;
+  color: #6b7280;
 
   @include dark-theme {
     color: #ffffff;

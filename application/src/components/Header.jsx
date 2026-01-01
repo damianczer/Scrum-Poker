@@ -31,49 +31,49 @@ const Header = memo(function Header({ username, language }) {
   const isEnglish = language === LANGUAGES.EN;
 
   return (
-    <header className="header">
+    <header className="header" role="banner">
       <div className="header-left">
         <div className="logo">
-          <a href="/">
-            <img src="/logo.svg" alt="Scrum Poker" className="logo-img" />
-            Scrum Poker
+          <a href="/" aria-label="Scrum Poker - Go to homepage">
+            <img src="/assets/icons/logo.svg" alt="" className="logo-img" aria-hidden="true" />
+            <span>Scrum Poker</span>
           </a>
         </div>
       </div>
 
       <div className="header-right">
-        <div className="header-controls">
+        <nav className="header-controls" aria-label="Site controls">
           <button
             className="control-btn help-toggle"
             onClick={handleHelpClick}
-            aria-label="Help"
-            title={isEnglish ? 'Help' : 'Pomoc'}
+            aria-label={isEnglish ? 'Open help dialog' : 'Otwórz pomoc'}
+            aria-haspopup="dialog"
           >
-            <FontAwesomeIcon icon={faQuestionCircle} />
+            <FontAwesomeIcon icon={faQuestionCircle} aria-hidden="true" />
           </button>
 
           <button
             className="control-btn language-toggle"
             onClick={toggleLanguage}
-            aria-label="Toggle language"
-            title={isEnglish ? 'Switch to Polish' : 'Przełącz na angielski'}
+            aria-label={isEnglish ? 'Switch language to Polish' : 'Zmień język na angielski'}
+            aria-live="polite"
           >
-            <span>{isEnglish ? 'PL' : 'EN'}</span>
+            <span aria-hidden="true">{isEnglish ? 'PL' : 'EN'}</span>
           </button>
 
           <button
             className="control-btn theme-toggle"
             onClick={toggleTheme}
-            aria-label="Toggle theme"
-            title={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme'}
+            aria-live="polite"
           >
-            <FontAwesomeIcon icon={isDarkTheme ? faSun : faMoon} />
+            <FontAwesomeIcon icon={isDarkTheme ? faSun : faMoon} aria-hidden="true" />
           </button>
-        </div>
+        </nav>
 
         {username && (
-          <div className="user-info">
-            <FontAwesomeIcon icon={faUserCircle} className="user-icon" />
+          <div className="user-info" aria-label={`Logged in as ${username}`}>
+            <FontAwesomeIcon icon={faUserCircle} className="user-icon" aria-hidden="true" />
             <span className="username">{username}</span>
           </div>
         )}

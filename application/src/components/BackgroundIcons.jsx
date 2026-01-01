@@ -2,22 +2,22 @@ import { useMemo, memo, useState, useEffect } from 'react';
 import '../styles/_backgroundIcons.scss';
 
 const POKER_ICONS = [
-    '/poker-1.svg',
-    '/poker-2.svg',
-    '/poker-3.svg',
-    '/poker-4.svg',
-    '/poker-5.svg',
-    '/poker-6.svg',
-    '/poker-7.svg',
-    '/poker-8.svg',
-    '/poker-9.svg',
-    '/poker-10.svg',
-    '/poker-11.svg',
-    '/poker-12.svg',
-    '/poker-13.svg',
-    '/poker-14.svg',
-    '/poker-15.svg',
-    '/poker-16.svg',
+    '/assets/icons/poker-1.svg',
+    '/assets/icons/poker-2.svg',
+    '/assets/icons/poker-3.svg',
+    '/assets/icons/poker-4.svg',
+    '/assets/icons/poker-5.svg',
+    '/assets/icons/poker-6.svg',
+    '/assets/icons/poker-7.svg',
+    '/assets/icons/poker-8.svg',
+    '/assets/icons/poker-9.svg',
+    '/assets/icons/poker-10.svg',
+    '/assets/icons/poker-11.svg',
+    '/assets/icons/poker-12.svg',
+    '/assets/icons/poker-13.svg',
+    '/assets/icons/poker-14.svg',
+    '/assets/icons/poker-15.svg',
+    '/assets/icons/poker-16.svg',
 ];
 
 const BackgroundIcons = memo(function BackgroundIcons() {

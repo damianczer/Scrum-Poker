@@ -47,6 +47,7 @@
     "notVoted": "not voted yet"
   },
   "cardSelection": {
+    "pageTitle": "Voting Session",
     "selectCard": "Select a card",
     "yourVote": "Your vote",
     "resetVotes": "Reset Votes",
@@ -61,7 +62,9 @@
     "orShareLink": "Or share session link",
     "copyLink": "Copy Link",
     "linkCopied": "Link copied!",
-    "close": "Close"
+    "close": "Close",
+    "sessionActions": "Session actions",
+    "userListLabel": "Session participants"
   },
   "footer": {
     "copyright": "Scrum Poker. All rights reserved.",
@@ -148,6 +151,7 @@
     "success": "Success",
     "somethingWentWrong": "Something went wrong",
     "unexpectedError": "An unexpected error occurred. Please refresh the page.",
-    "tryAgain": "Try Again"
+    "tryAgain": "Try Again",
+    "leaveSessionWarning": "You are in an active session. Are you sure you want to leave?"
   }
 }

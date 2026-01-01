@@ -47,6 +47,7 @@
     "notVoted": "jeszcze nie zagłosował"
   },
   "cardSelection": {
+    "pageTitle": "Sesja głosowania",
     "selectCard": "Wybierz kartę",
     "yourVote": "Twój głos",
     "resetVotes": "Resetuj głosy",
@@ -61,7 +62,9 @@
     "orShareLink": "Lub udostępnij link do sesji",
     "copyLink": "Kopiuj link",
     "linkCopied": "Link skopiowany!",
-    "close": "Zamknij"
+    "close": "Zamknij",
+    "sessionActions": "Akcje sesji",
+    "userListLabel": "Uczestnicy sesji"
   },
   "footer": {
     "copyright": "Scrum Poker. Wszelkie prawa zastrzeżone.",
@@ -148,6 +151,7 @@
     "success": "Sukces",
     "somethingWentWrong": "Coś poszło nie tak",
     "unexpectedError": "Wystąpił nieoczekiwany błąd. Odśwież stronę.",
-    "tryAgain": "Spróbuj ponownie"
+    "tryAgain": "Spróbuj ponownie",
+    "leaveSessionWarning": "Jesteś w aktywnej sesji. Czy na pewno chcesz wyjść?"
   }
 }

@@ -14,6 +14,7 @@ import {
     isSessionFull,
     usernameExists
 } from '../utils/validation';
+import { logger } from '../utils/logger';
 
 export const useSession = (username) => {
     const [sessionId, setSessionId] = useState('');
@@ -72,7 +73,7 @@ export const useSession = (username) => {
         } catch (err) {
             const errorKey = 'errorCreatingSession';
             setError(errorKey);
-            console.error('Failed to create session:', err);
+            logger.error('Failed to create session:', err);
             return { success: false, errorKey, message: err.message };
         } finally {
             setIsLoading(false);
@@ -121,7 +122,7 @@ export const useSession = (username) => {
         } catch (err) {
             const errorKey = 'errorJoiningSession';
             setError(errorKey);
-            console.error('Failed to join session:', err);
+            logger.error('Failed to join session:', err);
             return { success: false, errorKey, message: err.message };
         } finally {
             setIsLoading(false);
@@ -141,7 +142,7 @@ export const useSession = (username) => {
             await updateSessionUsers(sessionId, updatedUsers);
         } catch (err) {
             setUsers(users);
-            console.error('Failed to select card:', err);
+            logger.error('Failed to select card:', err);
             setError('errorSelectingCard');
         }
     }, [sessionId, users, username]);
@@ -157,7 +158,7 @@ export const useSession = (username) => {
             await toggleCardsInDb(sessionId, newShowCards);
         } catch (err) {
             setShowCards(showCards);
-            console.error('Failed to toggle cards:', err);
+            logger.error('Failed to toggle cards:', err);
             setError('errorTogglingCards');
         }
     }, [sessionId, showCards]);
@@ -175,7 +176,7 @@ export const useSession = (username) => {
         try {
             await resetVotesInDb(sessionId, updatedUsers);
         } catch (err) {
-            console.error('Failed to reset votes:', err);
+            logger.error('Failed to reset votes:', err);
             setError('errorResettingVotes');
         } finally {
             isResettingRef.current = false;
@@ -189,7 +190,7 @@ export const useSession = (username) => {
             await navigator.clipboard.writeText(sessionId);
             return true;
         } catch (err) {
-            console.error('Failed to copy to clipboard:', err);
+            logger.error('Failed to copy to clipboard:', err);
             return false;
         }
     }, [sessionId]);

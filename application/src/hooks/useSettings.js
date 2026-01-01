@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Cookies from 'js-cookie';
 import { COOKIE_CONFIG, THEMES, LANGUAGES } from '../constants/constants';
+import { logger } from '../utils/logger';
 
 const parseSettingsFromCookie = () => {
     try {
@@ -32,7 +33,7 @@ export const useSettings = () => {
             });
             document.documentElement.setAttribute('data-theme', theme);
         } catch (error) {
-            console.error('Error saving settings:', error);
+            logger.error('Error saving settings:', error);
         }
     }, [theme, language]);
 
