@@ -45,7 +45,7 @@
   justify-content: center;
   padding: 40px;
   border: none;
-  border-radius: 24px;
+  border-radius: var(--radius-md);
   background: linear-gradient(145deg, #eef1fc 0%, #d8dff5 100%);
   box-shadow:
     0 10px 25px -5px rgba(0, 0, 0, 0.15),

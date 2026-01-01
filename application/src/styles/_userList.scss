@@ -23,7 +23,7 @@
   width: 100%;
   padding: 12px 16px;
   border: 1px solid var(--card-border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background-color: var(--text-white-color);
 
   .two-columns & {
@@ -73,7 +73,7 @@
   margin-top: 10px;
   color: var(--text-black-color);
   border: 1px solid var(--card-border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 12px 16px;
   margin-bottom: 10px;
   width: 100%;
@@ -98,5 +98,52 @@
 
   [data-theme="dark"] & {
     color: var(--text-primary);
+  }
+}
+
+@media (max-width: 768px) {
+  .user-list {
+    max-width: 280px;
+    
+    &.two-columns {
+      flex-direction: column;
+    }
+  }
+
+  .user {
+    padding: 10px 12px;
+
+    .two-columns & {
+      width: 100%;
+      min-width: auto;
+    }
+  }
+
+  .username {
+    font-size: 14px;
+  }
+
+  .selected-card {
+    font-size: 14px;
+  }
+
+  .average-estimate {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user {
+    padding: 8px 10px;
+  }
+
+  .username {
+    font-size: 13px;
+  }
+
+  .average-estimate {
+    padding: 8px 10px;
+    font-size: 13px;
   }
 }
