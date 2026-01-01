@@ -1,6 +1,7 @@
 import { useMemo, useCallback } from 'react';
 import enTranslations from '../translations/en.json';
 import plTranslations from '../translations/pl.json';
+import { logger } from './logger';
 
 const translations = {
     en: enTranslations,
@@ -16,7 +17,7 @@ export const t = (language, keyPath, variables = {}) => {
     }
 
     if (!translation) {
-        console.warn(`Translation not found for key: ${keyPath} in language: ${language}`);
+        logger.warn(`Translation not found for key: ${keyPath} in language: ${language}`);
         return keyPath;
     }
 

@@ -71,7 +71,7 @@ const Footer = memo(function Footer() {
 
   return (
     <>
-      <footer className="footer">
+      <footer className="footer" role="contentinfo">
         <div className="footer-content">
           <p className="copyright">
             Copyright &copy; {currentYear} {t('copyright')}
@@ -83,20 +83,22 @@ const Footer = memo(function Footer() {
               href="https://www.damianczerwinski.pl/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Damian Czerwiński - opens in new tab"
             >
               Damian Czerwiński
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
           </p>
 
-          <div className="footer-links">
+          <nav className="footer-links" aria-label="Legal links">
             <a href="/terms-of-service" onClick={handleOpenTerms}>
               {t('termsOfService')}
             </a>
-            <span className="separator">|</span>
+            <span className="separator" aria-hidden="true">|</span>
             <a href="/privacy-policy" onClick={handleOpenPrivacy}>
               {t('privacyPolicy')}
             </a>
-          </div>
+          </nav>
         </div>
       </footer>
 

@@ -1,8 +1,11 @@
 import { useEffect, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
+import useFocusTrap from '../hooks/useFocusTrap';
 import '../styles/_legalModal.scss';
 
 const LegalModal = memo(function LegalModal({ title, content, onClose }) {
+  const focusTrapRef = useFocusTrap();
+  
   const handleClose = useCallback(() => {
     onClose?.();
   }, [onClose]);
@@ -34,17 +37,19 @@ const LegalModal = memo(function LegalModal({ title, content, onClose }) {
       className="legal-modal-overlay" 
       role="dialog" 
       aria-modal="true"
+      aria-labelledby="legal-modal-title"
       onClick={handleOverlayClick}
+      ref={focusTrapRef}
     >
       <div className="legal-modal">
         <div className="legal-modal-header">
-          <h2>{title}</h2>
+          <h2 id="legal-modal-title">{title}</h2>
           <button 
             className="legal-modal-close" 
             onClick={handleClose}
-            aria-label="Close"
+            aria-label="Close dialog"
           >
-            ×
+            <span aria-hidden="true">×</span>
           </button>
         </div>
         <div className="legal-modal-content">

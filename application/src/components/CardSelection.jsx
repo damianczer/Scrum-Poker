@@ -7,6 +7,7 @@ import { getCurrentUserCard } from '../utils/cardUtils';
 import UserList from './UserList';
 import Button from './common/Button';
 import ShareModal from './ShareModal';
+import SessionTimer from './SessionTimer';
 
 const CardSelection = memo(function CardSelection({
   users,
@@ -21,25 +22,20 @@ const CardSelection = memo(function CardSelection({
   onShareSession,
 }) {
   const t = useTranslation(language, 'cardSelection');
+  const tCommon = useTranslation(language, 'common');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [sessionTime, setSessionTime] = useState(0);
 
+  // Warn user before leaving active session
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSessionTime(prev => prev + 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = tCommon('leaveSessionWarning');
+      return e.returnValue;
+    };
 
-  const formatTime = useCallback((totalSeconds) => {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    if (hours > 0) {
-      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }, []);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [tCommon]);
 
   const currentUserCard = useMemo(() =>
     getCurrentUserCard(users, username),
@@ -61,24 +57,31 @@ const CardSelection = memo(function CardSelection({
 
   return (
     <div className="card-selection-container">
-      <div className="session-info">
+      <h1 className="sr-only">{t('pageTitle') || 'Voting Session'}</h1>
+      <div className="session-info" role="status" aria-live="polite">
         <span className="session-label">{t('session')}: <strong>{sessionName}</strong></span>
         <span className="users-label">{t('usersCount')}: <strong>{users.length}</strong></span>
-        <span className="time-label">{t('sessionTime')}: <strong>{formatTime(sessionTime)}</strong></span>
+        <SessionTimer label={t('sessionTime')} />
       </div>
       <div className="card-selection fade-in">
-        <div className="cards">
+        <div 
+          className="cards" 
+          role="radiogroup" 
+          aria-label={t('selectCard') || 'Select your estimate'}
+        >
           {POKER_CARDS.map((card) => (
             <Button
               key={card}
               variant="card"
               className={currentUserCard === card ? 'selected' : ''}
               onClick={() => handleCardClick(card)}
-              ariaLabel={`Select card ${card}`}
+              ariaLabel={card === '?' ? 'Select coffee break (pass)' : `Select ${card} story points`}
               aria-pressed={currentUserCard === card}
+              role="radio"
+              aria-checked={currentUserCard === card}
             >
               {card === '?' ? (
-                <img src="/coffee.svg" alt="coffee" className="card-coffee-icon" />
+                <img src="/assets/icons/coffee.svg" alt="" className="card-coffee-icon" aria-hidden="true" />
               ) : (
                 card
               )}
@@ -92,14 +95,14 @@ const CardSelection = memo(function CardSelection({
           language={language}
         />
 
-        <div className="action-buttons">
-          <Button variant="reset" onClick={onResetVotes}>
+        <div className="action-buttons" role="group" aria-label={t('sessionActions') || 'Session actions'}>
+          <Button variant="reset" onClick={onResetVotes} ariaLabel={t('resetVotes')}>
             {t('resetVotes')}
           </Button>
-          <Button onClick={onToggleCards}>
+          <Button onClick={onToggleCards} ariaLabel={showCards ? t('hideCards') : t('showCards')}>
             {showCards ? t('hideCards') : t('showCards')}
           </Button>
-          <Button onClick={handleShareClick}>
+          <Button onClick={handleShareClick} ariaLabel={t('shareSession')} aria-haspopup="dialog">
             {t('shareSession')}
           </Button>
         </div>

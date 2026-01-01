@@ -20,6 +20,12 @@ const VIEW_STATES = {
   GAME: 'game',
 };
 
+const formatErrorMessage = (result, t) => {
+  return result.message
+    ? `${t(result.errorKey)}${result.message}`
+    : t(result.errorKey);
+};
+
 function Content({ language }) {
   const [username, setUsername] = useState('');
   const [viewState, setViewState] = useState(VIEW_STATES.USERNAME);
@@ -65,10 +71,7 @@ function Content({ language }) {
       setViewState(VIEW_STATES.GAME);
       window.history.replaceState({}, document.title, window.location.pathname);
     } else {
-      const message = result.message
-        ? `${t(result.errorKey)}${result.message}`
-        : t(result.errorKey);
-      setErrorMessage(message);
+      setErrorMessage(formatErrorMessage(result, t));
       setUrlSessionId(null);
       setViewState(VIEW_STATES.ACTIONS);
     }
@@ -101,10 +104,7 @@ function Content({ language }) {
       setErrorMessage('');
       setViewState(VIEW_STATES.GAME);
     } else {
-      const message = result.message
-        ? `${t(result.errorKey)}${result.message}`
-        : t(result.errorKey);
-      setErrorMessage(message);
+      setErrorMessage(formatErrorMessage(result, t));
     }
   }, [sessionName, createSession, t]);
 
@@ -115,10 +115,7 @@ function Content({ language }) {
       setErrorMessage('');
       setViewState(VIEW_STATES.GAME);
     } else {
-      const message = result.message
-        ? `${t(result.errorKey)}${result.message}`
-        : t(result.errorKey);
-      setErrorMessage(message);
+      setErrorMessage(formatErrorMessage(result, t));
     }
   }, [sessionId, joinSession, t]);
 

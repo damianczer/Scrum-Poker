@@ -6,7 +6,8 @@
 
 .card-selection-container {
   @include flex-column-center;
-  height: 100vh;
+  flex: 1;
+  padding: var(--spacing-lg);
 }
 
 // ==========================================================================
@@ -89,13 +90,15 @@
   height: 96px;
   border: none;
   border-radius: var(--radius-md);
-  @include gradient-light-card;
-  color: var(--text-primary);
+  background: #ffffff;
+  color: #1e293b;
   cursor: pointer;
   font-size: 1.25rem;
   font-weight: 700;
   transition: $transition-base;
-  @include shadow-card;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   @include fade-in;
 
@@ -128,7 +131,7 @@
     left: 4px;
     right: 4px;
     bottom: 4px;
-    border: 2px solid rgba($color-primary, 0.15);
+    border: 2px solid rgba(30, 41, 59, 0.1);
     border-radius: 8px;
     pointer-events: none;
   }
@@ -139,16 +142,29 @@
     top: 6px;
     left: 8px;
     font-size: 0.6rem;
-    color: rgba($color-primary, 0.4);
+    color: rgba(30, 41, 59, 0.3);
     font-weight: normal;
   }
 
   &:hover {
     transform: translateY(-8px) rotateX(5deg);
-    background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+    background: #ffffff;
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.15),
+      0 4px 8px rgba(0, 0, 0, 0.1);
 
     &::before {
-      border-color: rgba($color-primary, 0.3);
+      border-color: rgba(30, 41, 59, 0.2);
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-primary;
+    outline-offset: 2px;
+    transform: translateY(-4px);
+
+    @include dark-theme {
+      outline-color: $dark-accent;
     }
   }
 
@@ -222,6 +238,20 @@
     min-width: 180px;
     padding: 14px 32px;
     white-space: nowrap;
+    background: #1d4ed8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover:not(:disabled) {
+      background: #1e40af;
+    }
+
+    @include dark-theme {
+      background: $color-primary;
+
+      &:hover:not(:disabled) {
+        background: $color-primary-hover;
+      }
+    }
   }
 
   @include tablet {

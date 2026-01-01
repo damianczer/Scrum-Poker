@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { logger } from '../../utils/logger';
 
 class ErrorBoundary extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class ErrorBoundary extends Component {
 
     componentDidCatch(error, errorInfo) {
         this.setState({ errorInfo });
-        console.error('ErrorBoundary caught an error:', error, errorInfo);
+        logger.error('ErrorBoundary caught an error:', error, errorInfo);
         this.props.onError?.(error, errorInfo);
     }
 
@@ -36,14 +37,15 @@ class ErrorBoundary extends Component {
             }
 
             return (
-                <div className="error-boundary" role="alert">
+                <div className="error-boundary" role="alert" aria-live="assertive">
                     <div className="error-boundary-content">
-                        <h2>{this.props.title || 'Something went wrong'}</h2>
-                        <p>{this.props.message || 'An unexpected error occurred. Please try again.'}</p>
+                        <h2 id="error-title">{this.props.title || 'Something went wrong'}</h2>
+                        <p id="error-message">{this.props.message || 'An unexpected error occurred. Please try again.'}</p>
                         {this.props.showRetry && (
                             <button
                                 className="option-button fade-in"
                                 onClick={this.handleRetry}
+                                aria-describedby="error-message"
                             >
                                 {this.props.retryLabel || 'Try Again'}
                             </button>
@@ -51,9 +53,9 @@ class ErrorBoundary extends Component {
                         {this.state.error && (
                             <details className="error-details">
                                 <summary>Error Details</summary>
-                                <pre>{this.state.error.toString()}</pre>
+                                <pre aria-label="Error stack trace">{this.state.error.toString()}</pre>
                                 {this.state.errorInfo && (
-                                    <pre>{this.state.errorInfo.componentStack}</pre>
+                                    <pre aria-label="Component stack">{this.state.errorInfo.componentStack}</pre>
                                 )}
                             </details>
                         )}

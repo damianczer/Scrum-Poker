@@ -1,5 +1,5 @@
 import './App.scss';
-import { createContext, Suspense, lazy } from 'react';
+import { createContext, Suspense, lazy, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import BackgroundIcons from './components/BackgroundIcons';
@@ -12,8 +12,8 @@ const Footer = lazy(() => import('./components/Footer'));
 export const ThemeContext = createContext();
 
 const LoadingFallback = () => (
-  <div className="loading-fallback">
-    <div className="spinner"></div>
+  <div className="loading-fallback" role="status" aria-live="polite">
+    <div className="spinner" aria-hidden="true"></div>
     <p className="loading-text">Loading...</p>
   </div>
 );
@@ -21,8 +21,8 @@ const LoadingFallback = () => (
 const ThemeOverlay = ({ language }) => {
   const t = useTranslation(language, 'common');
   return (
-    <div className="theme-overlay">
-      <div className="spinner"></div>
+    <div className="theme-overlay" role="status" aria-live="polite">
+      <div className="spinner" aria-hidden="true"></div>
       <p className="loading-text">{t('loading')}</p>
     </div>
   );
@@ -44,13 +44,17 @@ function App() {
 
   const t = useTranslation(language, 'common');
 
-  const contextValue = {
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const contextValue = useMemo(() => ({
     theme,
     toggleTheme,
     language,
     setLanguage,
     toggleLanguage,
-  };
+  }), [theme, toggleTheme, language, setLanguage, toggleLanguage]);
 
   return (
     <ErrorBoundary
@@ -64,7 +68,9 @@ function App() {
         <Suspense fallback={<LoadingFallback />}>
           <div className="App" data-theme={theme}>
             <BackgroundIcons />
-            <Content language={language} />
+            <main id="main-content">
+              <Content language={language} />
+            </main>
             <Footer />
           </div>
         </Suspense>

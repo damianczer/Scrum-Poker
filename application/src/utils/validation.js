@@ -1,5 +1,20 @@
 import { SESSION_CONFIG } from '../constants/constants';
 
+const HTML_ENTITIES = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#x27;',
+    '/': '&#x2F;',
+    '`': '&#x60;',
+};
+
+export const sanitizeInput = (input) => {
+    if (typeof input !== 'string') return '';
+    return input.replace(/[&<>"'`/]/g, (char) => HTML_ENTITIES[char] || char);
+};
+
 export const validateUsername = (username) => {
     const trimmed = username.trim();
 
