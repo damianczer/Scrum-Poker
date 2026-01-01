@@ -1,3 +1,9 @@
+@use 'global' as *;
+
+// ==========================================================================
+// HEADER
+// ==========================================================================
+
 .header {
   position: sticky;
   top: 0;
@@ -13,12 +19,20 @@
   border: none;
   transition: var(--transition);
 
+  // ==========================================================================
+  // HEADER LEFT
+  // ------------------------------------------------------------------------
+
   .header-left {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
     margin-left: var(--spacing-sm);
   }
+
+  // ==========================================================================
+  // LOGO
+  // ==========================================================================
 
   .logo {
     a {
@@ -45,6 +59,10 @@
     }
   }
 
+  // ==========================================================================
+  // HEADER RIGHT
+  // ==========================================================================
+
   .header-right {
     display: flex;
     align-items: center;
@@ -57,25 +75,12 @@
     gap: var(--spacing-sm);
   }
 
-  .control-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.05);
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
+  // ==========================================================================
+  // CONTROL BUTTONS
+  // ==========================================================================
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
+  .control-btn {
+    @include control-button;
 
     &.language-toggle {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -90,6 +95,10 @@
       font-size: 1.25rem;
     }
   }
+
+  // ==========================================================================
+  // USER INFO
+  // ==========================================================================
 
   .user-info {
     display: flex;
@@ -115,10 +124,12 @@
     }
   }
 
+  // ==========================================================================
+  // SHARE BUTTON
+  // ==========================================================================
+
   .share-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     gap: var(--spacing-sm);
     height: 40px;
     padding: 0 var(--spacing-md);
@@ -131,10 +142,7 @@
     cursor: pointer;
     transition: var(--transition);
 
-    svg {
-      line-height: 1;
-    }
-
+    svg,
     span {
       line-height: 1;
     }
@@ -145,8 +153,12 @@
     }
   }
 
-  @media (max-width: 768px) {
-    padding: var(--spacing-md) var(--spacing-md);
+  // ==========================================================================
+  // RESPONSIVE STYLES
+  // ==========================================================================
+
+  @include tablet {
+    padding: var(--spacing-md);
     padding-top: var(--spacing-lg);
     padding-bottom: var(--spacing-lg);
     flex-direction: column;
@@ -175,14 +187,14 @@
     .control-btn {
       width: 36px;
       height: 36px;
-      background: rgba(30, 58, 95, 0.9);
+      background: rgba($dark-bg-primary, 0.9);
       border-color: rgba(255, 255, 255, 0.25);
     }
 
     .user-info {
       height: 36px;
       padding: 0 var(--spacing-sm);
-      background: rgba(30, 58, 95, 0.9);
+      background: rgba($dark-bg-primary, 0.9);
       border-color: rgba(255, 255, 255, 0.25);
 
       .username {
@@ -194,7 +206,7 @@
     .share-button {
       padding: var(--spacing-xs) var(--spacing-sm);
       font-size: 0.75rem;
-      background: rgba(30, 58, 95, 0.9);
+      background: rgba($dark-bg-primary, 0.9);
       border-color: rgba(255, 255, 255, 0.25);
 
       span {

@@ -1,20 +1,26 @@
+@use 'global' as *;
+
+// ==========================================================================
+// MODAL - Slide-in notification style modal
+// ==========================================================================
+
 .modal {
   position: absolute;
   top: 60px;
-  background: linear-gradient(145deg, #eef1fc 0%, #d8dff5 100%);
+  right: 10px;
+  width: 260px;
+  @include gradient-light-card;
   border-radius: 16px;
   color: var(--text-black-color);
   z-index: 1000;
   text-align: center;
-  width: 260px;
-  right: 10px;
-  animation: slideIn 0.5s ease-out;
+  animation: notificationSlideIn 0.5s ease-out;
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 12px 24px -8px rgba(0, 0, 0, 0.15);
 
-  [data-theme="dark"] & {
-    background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
+  @include dark-theme {
+    background: linear-gradient(145deg, $dark-bg-primary 0%, #132035 100%);
     color: var(--text-primary);
     box-shadow:
       0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -26,7 +32,11 @@
   font-size: 12px;
 }
 
-@keyframes slideIn {
+// ==========================================================================
+// ANIMATIONS
+// ==========================================================================
+
+@keyframes notificationSlideIn {
   from {
     transform: translateX(100%);
     opacity: 0;

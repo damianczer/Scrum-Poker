@@ -1,37 +1,22 @@
+@use 'global' as *;
+
+// ==========================================================================
+// HELP MODAL COMPONENT
+// ==========================================================================
+
 .help-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: var(--spacing-md);
-    animation: helpFadeIn 0.2s ease-out;
+    @include modal-overlay;
+    animation: modalFadeIn 0.2s ease-out;
 }
 
 .help-modal {
-    background: linear-gradient(145deg, #eef1fc 0%, #d8dff5 100%);
-    border-radius: var(--radius-lg);
+    @include modal-content;
     max-width: 700px;
-    width: 100%;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    animation: helpSlideUp 0.3s ease-out;
-    border: none;
-    box-shadow:
-        0 25px 50px -12px rgba(0, 0, 0, 0.25),
-        0 12px 24px -8px rgba(0, 0, 0, 0.15);
+    animation: modalSlideUp 0.3s ease-out;
 
-    [data-theme="dark"] & {
-        background: linear-gradient(145deg, #1e3a5f 0%, #132035 100%);
-        box-shadow:
-            0 25px 50px -12px rgba(0, 0, 0, 0.5),
-            0 12px 24px -8px rgba(0, 0, 0, 0.4);
+    @include mobile {
+        max-width: 90%;
+        max-height: 70vh;
     }
 }
 
@@ -48,26 +33,18 @@
         font-weight: 600;
         color: var(--text-primary);
     }
+
+    @include mobile {
+        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+
+        h2 {
+            font-size: 1.1rem;
+        }
+    }
 }
 
 .help-modal-close {
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    cursor: pointer;
-    padding: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-sm);
-    transition: var(--transition);
-
-    &:hover {
-        background: var(--bg-tertiary);
-    }
+    @include modal-close-button;
 }
 
 .help-modal-content {
@@ -76,6 +53,7 @@
     color: var(--text-primary);
     font-size: 0.9rem;
     line-height: 1.6;
+    @include custom-scrollbar;
 
     h3 {
         font-size: 1rem;
@@ -101,80 +79,7 @@
         color: var(--text-secondary);
     }
 
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(100, 100, 100, 0.4);
-        border-radius: 4px;
-
-        &:hover {
-            background: rgba(100, 100, 100, 0.6);
-        }
-    }
-
-    [data-theme="dark"] & {
-        &::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-
-            &:hover {
-                background: rgba(255, 255, 255, 0.3);
-            }
-        }
-    }
-}
-
-@keyframes helpFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes helpSlideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@media (max-width: 480px) {
-    .help-modal-overlay {
-        padding: var(--spacing-md);
-    }
-
-    .help-modal {
-        max-width: 90%;
-        max-height: 70vh;
-    }
-
-    .help-modal-header {
-        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
-
-        h2 {
-            font-size: 1.1rem;
-        }
-    }
-
-    .help-modal-content {
+    @include mobile {
         padding: var(--spacing-md);
         font-size: 0.85rem;
 
