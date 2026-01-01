@@ -29,7 +29,7 @@
     "sessionNameError": "Session name must be at least 3 characters long",
     "sessionIdError": "Please enter a valid session ID",
     "sessionIdNotExist": "Session does not exist",
-    "sessionFull": "Session is full (max 8 users)",
+    "sessionFull": "Session is full (max 10 users)",
     "usernameExists": "Username already exists in this session",
     "errorCreatingSession": "Error creating session: ",
     "errorJoiningSession": "Error joining session: ",
@@ -50,7 +50,17 @@
     "yourVote": "Your vote",
     "resetVotes": "Reset Votes",
     "showCards": "Show Cards",
-    "hideCards": "Hide Cards"
+    "hideCards": "Hide Cards",
+    "session": "Session",
+    "usersCount": "Users",
+    "shareSession": "Share Session",
+    "sessionCopied": "Session ID copied to clipboard!",
+    "sessionTime": "Duration",
+    "shareTitle": "Share Session",
+    "orShareLink": "Or share session link",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link copied!",
+    "close": "Close"
   },
   "footer": {
     "copyright": "Scrum Poker. All rights reserved.",

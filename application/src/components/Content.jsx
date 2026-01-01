@@ -1,4 +1,4 @@
-import { useState, useCallback, Suspense, lazy } from 'react';
+import { useState, useCallback, Suspense, lazy, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/_content.scss';
 import Header from './Header';
@@ -25,9 +25,19 @@ function Content({ language }) {
   const [viewState, setViewState] = useState(VIEW_STATES.USERNAME);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [urlSessionId, setUrlSessionId] = useState(null);
+  const hasAutoJoined = useRef(false);
 
   const t = useTranslation(language, 'content');
   const tCommon = useTranslation(language, 'common');
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionParam = urlParams.get('session');
+    if (sessionParam) {
+      setUrlSessionId(sessionParam);
+    }
+  }, []);
 
   const session = useSession(username);
   const {
@@ -47,7 +57,24 @@ function Content({ language }) {
     shareSession,
   } = session;
 
-  const handleUsernameSubmit = useCallback(() => {
+  const handleAutoJoinSession = useCallback(async (targetSessionId) => {
+    const result = await joinSession(targetSessionId);
+
+    if (result.success) {
+      setErrorMessage('');
+      setViewState(VIEW_STATES.GAME);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      const message = result.message
+        ? `${t(result.errorKey)}${result.message}`
+        : t(result.errorKey);
+      setErrorMessage(message);
+      setUrlSessionId(null);
+      setViewState(VIEW_STATES.ACTIONS);
+    }
+  }, [joinSession, t]);
+
+  const handleUsernameSubmit = useCallback(async () => {
     setIsSubmitted(true);
     const validation = validateUsername(username);
 
@@ -57,8 +84,15 @@ function Content({ language }) {
     }
 
     setErrorMessage('');
-    setViewState(VIEW_STATES.ACTIONS);
-  }, [username, t]);
+
+    if (urlSessionId && !hasAutoJoined.current) {
+      hasAutoJoined.current = true;
+      setSessionId(urlSessionId);
+      await handleAutoJoinSession(urlSessionId);
+    } else {
+      setViewState(VIEW_STATES.ACTIONS);
+    }
+  }, [username, t, urlSessionId, setSessionId, handleAutoJoinSession]);
 
   const handleCreateSessionSubmit = useCallback(async () => {
     const result = await createSession(sessionName);
@@ -108,6 +142,8 @@ function Content({ language }) {
     setUsername('');
     setIsSubmitted(false);
     setErrorMessage('');
+    setUrlSessionId(null);
+    hasAutoJoined.current = false;
   }, []);
 
   const handleUsernameChange = useCallback((value) => {
@@ -131,9 +167,12 @@ function Content({ language }) {
             showCards={showCards}
             username={username}
             language={language}
+            sessionName={sessionName}
+            sessionId={sessionId}
             onCardSelect={selectCard}
             onToggleCards={toggleCards}
             onResetVotes={resetVotes}
+            onShareSession={shareSession}
           />
         </Suspense>
       );
@@ -145,48 +184,48 @@ function Content({ language }) {
           <h1>{t('heroTitle')}</h1>
         </div>
         <div className="card fade-in">
-        {viewState === VIEW_STATES.USERNAME && (
-          <UsernameForm
-            username={username}
-            onUsernameChange={handleUsernameChange}
-            onSubmit={handleUsernameSubmit}
-            errorMessage={errorMessage}
-            t={t}
-          />
-        )}
+          {viewState === VIEW_STATES.USERNAME && (
+            <UsernameForm
+              username={username}
+              onUsernameChange={handleUsernameChange}
+              onSubmit={handleUsernameSubmit}
+              errorMessage={errorMessage}
+              t={t}
+            />
+          )}
 
-        {viewState === VIEW_STATES.ACTIONS && (
-          <SessionActions
-            onCreateSession={handleGoToCreate}
-            onJoinSession={handleGoToJoin}
-            onCancel={handleBackToUsername}
-            t={t}
-          />
-        )}
+          {viewState === VIEW_STATES.ACTIONS && (
+            <SessionActions
+              onCreateSession={handleGoToCreate}
+              onJoinSession={handleGoToJoin}
+              onCancel={handleBackToUsername}
+              t={t}
+            />
+          )}
 
-        {viewState === VIEW_STATES.JOIN && (
-          <JoinSessionForm
-            sessionId={sessionId}
-            onSessionIdChange={setSessionId}
-            onSubmit={handleJoinSessionSubmit}
-            onCancel={handleBackToActions}
-            errorMessage={errorMessage}
-            isLoading={isLoading}
-            t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
-          />
-        )}
+          {viewState === VIEW_STATES.JOIN && (
+            <JoinSessionForm
+              sessionId={sessionId}
+              onSessionIdChange={setSessionId}
+              onSubmit={handleJoinSessionSubmit}
+              onCancel={handleBackToActions}
+              errorMessage={errorMessage}
+              isLoading={isLoading}
+              t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
+            />
+          )}
 
-        {viewState === VIEW_STATES.CREATE && (
-          <CreateSessionForm
-            sessionName={sessionName}
-            onSessionNameChange={setSessionName}
-            onSubmit={handleCreateSessionSubmit}
-            onCancel={handleBackToActions}
-            errorMessage={errorMessage}
-            isLoading={isLoading}
-            t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
-          />
-        )}
+          {viewState === VIEW_STATES.CREATE && (
+            <CreateSessionForm
+              sessionName={sessionName}
+              onSessionNameChange={setSessionName}
+              onSubmit={handleCreateSessionSubmit}
+              onCancel={handleBackToActions}
+              errorMessage={errorMessage}
+              isLoading={isLoading}
+              t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
+            />
+          )}
         </div>
         <p className="hero-subtitle fade-in">{t('heroSubtitle')}</p>
       </>
@@ -197,7 +236,6 @@ function Content({ language }) {
     <>
       <Header
         username={viewState !== VIEW_STATES.USERNAME ? username : ''}
-        onShare={isSessionActive ? shareSession : null}
         language={language}
       />
       <div className="content">

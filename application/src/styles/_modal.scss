@@ -1,14 +1,17 @@
 .modal {
   position: absolute;
   top: 60px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
-  color: var(--text-white-color);
+  background: linear-gradient(145deg, #eef1fc 0%, #d8dff5 100%);
+  border-radius: 16px;
+  color: var(--text-black-color);
   z-index: 1000;
   text-align: center;
   width: 260px;
   right: 10px;
   animation: slideIn 0.5s ease-out;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 12px 24px -8px rgba(0, 0, 0, 0.15);
 }
 
 .modal-content {

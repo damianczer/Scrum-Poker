@@ -15,7 +15,7 @@ const UserList = memo(function UserList({ users, showCards, language }) {
   );
 
   return (
-    <div className="user-list">
+    <div className={`user-list ${users.length > 5 ? 'two-columns' : ''}`}>
       {users.map((user) => (
         <div key={user.name} className="user">
           <span className="username">{user.name}</span>
