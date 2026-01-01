@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 require('dotenv').config();
 
@@ -16,7 +17,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: isProduction ? 'js/[name].[contenthash].js' : 'js/[name].js',
       chunkFilename: isProduction ? 'js/[name].[contenthash].chunk.js' : 'js/[name].chunk.js',
-      publicPath: isProduction ? './' : '/',
+      publicPath: isProduction ? '/scrum-poker/' : '/',
       clean: true
     },
     module: {
@@ -91,6 +92,17 @@ module.exports = (env, argv) => {
           test: /\.(js|css|html|svg)$/,
           threshold: 8192,
           minRatio: 0.8
+        }),
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: 'public',
+              to: '',
+              globOptions: {
+                ignore: ['**/index.html']
+              }
+            }
+          ]
         })
       ] : [])
     ],

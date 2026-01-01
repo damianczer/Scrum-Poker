@@ -1,16 +1,13 @@
-import { useState, useCallback, Suspense, lazy, useEffect, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/_content.scss';
 import Header from './Header';
-import UsernameForm from './UsernameForm';
-import SessionActions from './SessionActions';
-import JoinSessionForm from './JoinSessionForm';
-import CreateSessionForm from './CreateSessionForm';
+import GameView from './GameView';
+import LobbyView from './LobbyView';
 import { useTranslation } from '../utils/i18n';
 import { useSession } from '../hooks/useSession';
+import { useUrlSession } from '../hooks/useUrlSession';
 import { validateUsername } from '../utils/validation';
-
-const CardSelection = lazy(() => import('./CardSelection'));
 
 const VIEW_STATES = {
   USERNAME: 'username',
@@ -31,19 +28,12 @@ function Content({ language }) {
   const [viewState, setViewState] = useState(VIEW_STATES.USERNAME);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [urlSessionId, setUrlSessionId] = useState(null);
   const hasAutoJoined = useRef(false);
 
   const t = useTranslation(language, 'content');
   const tCommon = useTranslation(language, 'common');
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const sessionParam = urlParams.get('session');
-    if (sessionParam) {
-      setUrlSessionId(sessionParam);
-    }
-  }, []);
+  const { urlSessionId, setUrlSessionId, clearUrlSession } = useUrlSession();
 
   const session = useSession(username);
   const {
@@ -69,13 +59,13 @@ function Content({ language }) {
     if (result.success) {
       setErrorMessage('');
       setViewState(VIEW_STATES.GAME);
-      window.history.replaceState({}, document.title, window.location.pathname);
+      clearUrlSession();
     } else {
       setErrorMessage(formatErrorMessage(result, t));
       setUrlSessionId(null);
       setViewState(VIEW_STATES.ACTIONS);
     }
-  }, [joinSession, t]);
+  }, [joinSession, t, clearUrlSession, setUrlSessionId]);
 
   const handleUsernameSubmit = useCallback(async () => {
     setIsSubmitted(true);
@@ -141,7 +131,7 @@ function Content({ language }) {
     setErrorMessage('');
     setUrlSessionId(null);
     hasAutoJoined.current = false;
-  }, []);
+  }, [setUrlSessionId]);
 
   const handleUsernameChange = useCallback((value) => {
     setUsername(value);
@@ -151,15 +141,17 @@ function Content({ language }) {
     }
   }, [isSubmitted, t]);
 
-  const renderContent = () => {
-    if (viewState === VIEW_STATES.GAME || isSessionActive) {
-      return (
-        <Suspense fallback={
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-          </div>
-        }>
-          <CardSelection
+  const isGameActive = viewState === VIEW_STATES.GAME || isSessionActive;
+
+  return (
+    <>
+      <Header
+        username={viewState !== VIEW_STATES.USERNAME ? username : ''}
+        language={language}
+      />
+      <div className="content">
+        {isGameActive ? (
+          <GameView
             users={users}
             showCards={showCards}
             username={username}
@@ -171,72 +163,28 @@ function Content({ language }) {
             onResetVotes={resetVotes}
             onShareSession={shareSession}
           />
-        </Suspense>
-      );
-    }
-
-    return (
-      <>
-        <div className="hero-description fade-in">
-          <h1>{t('heroTitle')}</h1>
-        </div>
-        <div className="card fade-in">
-          {viewState === VIEW_STATES.USERNAME && (
-            <UsernameForm
-              username={username}
-              onUsernameChange={handleUsernameChange}
-              onSubmit={handleUsernameSubmit}
-              errorMessage={errorMessage}
-              t={t}
-            />
-          )}
-
-          {viewState === VIEW_STATES.ACTIONS && (
-            <SessionActions
-              onCreateSession={handleGoToCreate}
-              onJoinSession={handleGoToJoin}
-              onCancel={handleBackToUsername}
-              t={t}
-            />
-          )}
-
-          {viewState === VIEW_STATES.JOIN && (
-            <JoinSessionForm
-              sessionId={sessionId}
-              onSessionIdChange={setSessionId}
-              onSubmit={handleJoinSessionSubmit}
-              onCancel={handleBackToActions}
-              errorMessage={errorMessage}
-              isLoading={isLoading}
-              t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
-            />
-          )}
-
-          {viewState === VIEW_STATES.CREATE && (
-            <CreateSessionForm
-              sessionName={sessionName}
-              onSessionNameChange={setSessionName}
-              onSubmit={handleCreateSessionSubmit}
-              onCancel={handleBackToActions}
-              errorMessage={errorMessage}
-              isLoading={isLoading}
-              t={(key) => key === 'loading' ? tCommon('loading') : t(key)}
-            />
-          )}
-        </div>
-        <p className="hero-subtitle fade-in">{t('heroSubtitle')}</p>
-      </>
-    );
-  };
-
-  return (
-    <>
-      <Header
-        username={viewState !== VIEW_STATES.USERNAME ? username : ''}
-        language={language}
-      />
-      <div className="content">
-        {renderContent()}
+        ) : (
+          <LobbyView
+            viewState={viewState}
+            username={username}
+            sessionId={sessionId}
+            sessionName={sessionName}
+            errorMessage={errorMessage}
+            isLoading={isLoading}
+            t={t}
+            tCommon={tCommon}
+            onUsernameChange={handleUsernameChange}
+            onUsernameSubmit={handleUsernameSubmit}
+            onSessionIdChange={setSessionId}
+            onSessionNameChange={setSessionName}
+            onGoToCreate={handleGoToCreate}
+            onGoToJoin={handleGoToJoin}
+            onBackToActions={handleBackToActions}
+            onBackToUsername={handleBackToUsername}
+            onJoinSubmit={handleJoinSessionSubmit}
+            onCreateSubmit={handleCreateSessionSubmit}
+          />
+        )}
       </div>
     </>
   );

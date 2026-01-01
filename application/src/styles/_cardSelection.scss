@@ -24,6 +24,12 @@
   border-radius: var(--radius-md);
   width: 90vw;
   max-width: 900px;
+
+  @include dark-theme {
+    @include gradient-dark-card;
+    @include shadow-card-dark;
+    border: none;
+  }
 }
 
 .session-label,
@@ -90,8 +96,8 @@
   height: 96px;
   border: none;
   border-radius: var(--radius-md);
-  background: #ffffff;
-  color: #1e293b;
+  background: $color-white;
+  color: $color-black;
   cursor: pointer;
   font-size: 1.25rem;
   font-weight: 700;
@@ -104,7 +110,7 @@
 
   @include dark-theme {
     @include gradient-dark-card;
-    color: #ffffff;
+    color: $color-white;
     @include shadow-card-dark;
 
     &::before {
@@ -116,7 +122,7 @@
     }
 
     &:hover {
-      background: linear-gradient(145deg, #3d6a97 0%, #2d5a87 100%);
+      background: linear-gradient(145deg, #3d6a97 0%, $dark-border 100%);
 
       &::before {
         border-color: rgba(0, 217, 255, 0.5);
@@ -238,11 +244,11 @@
     min-width: 180px;
     padding: 14px 32px;
     white-space: nowrap;
-    background: #1d4ed8;
+    background: $color-primary-dark;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
     &:hover:not(:disabled) {
-      background: #1e40af;
+      background: $color-primary-darker;
     }
 
     @include dark-theme {
