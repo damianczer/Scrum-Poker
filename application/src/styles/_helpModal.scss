@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +14,7 @@
 }
 
 .help-modal {
-    background: var(--bg-secondary);
+    background: linear-gradient(145deg, #eef1fc 0%, #d8dff5 100%);
     border-radius: var(--radius-lg);
     max-width: 700px;
     width: 100%;
@@ -22,7 +22,10 @@
     display: flex;
     flex-direction: column;
     animation: helpSlideUp 0.3s ease-out;
-    border: 1px solid var(--border-color);
+    border: none;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 12px 24px -8px rgba(0, 0, 0, 0.15);
 }
 
 .help-modal-header {

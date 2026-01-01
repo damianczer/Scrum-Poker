@@ -29,7 +29,7 @@
     "sessionNameError": "Nazwa sesji musi mieć co najmniej 3 znaki",
     "sessionIdError": "Proszę podać prawidłowe ID sesji",
     "sessionIdNotExist": "Sesja nie istnieje",
-    "sessionFull": "Sesja jest pełna (maks. 8 użytkowników)",
+    "sessionFull": "Sesja jest pełna (maks. 10 użytkowników)",
     "usernameExists": "Ta nazwa użytkownika już istnieje w tej sesji",
     "errorCreatingSession": "Błąd podczas tworzenia sesji: ",
     "errorJoiningSession": "Błąd podczas dołączania do sesji: ",
@@ -50,7 +50,17 @@
     "yourVote": "Twój głos",
     "resetVotes": "Resetuj głosy",
     "showCards": "Pokaż karty",
-    "hideCards": "Ukryj karty"
+    "hideCards": "Ukryj karty",
+    "session": "Sesja",
+    "usersCount": "Użytkownicy",
+    "shareSession": "Udostępnij sesję",
+    "sessionCopied": "ID sesji skopiowane do schowka!",
+    "sessionTime": "Długość sesji",
+    "shareTitle": "Udostępnij sesję",
+    "orShareLink": "Lub udostępnij link do sesji",
+    "copyLink": "Kopiuj link",
+    "linkCopied": "Link skopiowany!",
+    "close": "Zamknij"
   },
   "footer": {
     "copyright": "Scrum Poker. Wszelkie prawa zastrzeżone.",

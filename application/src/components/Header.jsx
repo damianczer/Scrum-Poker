@@ -2,23 +2,18 @@ import { useState, useContext, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/_header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faMoon, faSun, faShareNodes, faQuestionCircle } from '../utils/icons';
+import { faUserCircle, faMoon, faSun, faQuestionCircle } from '../utils/icons';
 import { useTranslation } from '../utils/i18n';
 import { ThemeContext } from '../App';
 import { THEMES, LANGUAGES } from '../constants/constants';
 import Modal from './Modal';
 import HelpModal from './HelpModal';
 
-const Header = memo(function Header({ username, onShare, language }) {
+const Header = memo(function Header({ username, language }) {
   const t = useTranslation(language, 'header');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
   const { theme, toggleTheme, toggleLanguage } = useContext(ThemeContext);
-
-  const handleShareClick = useCallback(() => {
-    onShare?.();
-    setIsModalVisible(true);
-  }, [onShare]);
 
   const handleCloseModal = useCallback(() => {
     setIsModalVisible(false);
@@ -83,13 +78,6 @@ const Header = memo(function Header({ username, onShare, language }) {
           </div>
         )}
 
-        {onShare && (
-          <button className="share-button" onClick={handleShareClick}>
-            <FontAwesomeIcon icon={faShareNodes} />
-            <span>{t('shareSession')}</span>
-          </button>
-        )}
-
         {isModalVisible && (
           <Modal
             message={t('sessionIdMessage')}
@@ -112,7 +100,6 @@ Header.displayName = 'Header';
 
 Header.propTypes = {
   username: PropTypes.string,
-  onShare: PropTypes.func,
   language: PropTypes.string.isRequired,
 };
 

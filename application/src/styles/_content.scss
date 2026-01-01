@@ -37,7 +37,6 @@
   width: 100%;
   max-width: 420px;
   min-height: 400px;
-  justify-content: center;
 }
 
 .welcome-message {
@@ -50,10 +49,14 @@
 
 .option-button {
   @include button-styles(var(--button-background-color), var(--button-hover-background-color));
-  margin: 15px 0;
+  margin: 8px 0;
 
   &.cancel {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+    background: #6b7280;
+
+    &:hover {
+      background: #4b5563;
+    }
   }
 }
 
@@ -62,6 +65,7 @@
   margin: 10px 0;
   font-size: 16px;
   width: 100%;
+  max-width: 320px;
   text-align: center;
   color: var(--text-black-color);
 }
@@ -69,6 +73,7 @@
 .session-input,
 .username-input {
   @include input-styles;
+  text-align: center;
 }
 
 .error-message {
@@ -93,8 +98,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 .fade-in {
