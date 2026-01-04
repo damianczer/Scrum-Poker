@@ -62,8 +62,13 @@ function Content({ language }) {
       clearUrlSession();
     } else {
       setErrorMessage(formatErrorMessage(result, t));
-      setUrlSessionId(null);
-      setViewState(VIEW_STATES.ACTIONS);
+      if (result.errorKey === 'usernameExists') {
+        setViewState(VIEW_STATES.USERNAME);
+        hasAutoJoined.current = false;
+      } else {
+        setUrlSessionId(null);
+        setViewState(VIEW_STATES.ACTIONS);
+      }
     }
   }, [joinSession, t, clearUrlSession, setUrlSessionId]);
 
