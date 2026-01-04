@@ -5,6 +5,7 @@ import '../styles/_shareModal.scss';
 import { useTranslation } from '../utils/i18n';
 import useFocusTrap from '../hooks/useFocusTrap';
 import Button from './common/Button';
+import { BASE_PATH } from '../constants/config';
 
 const ShareModal = memo(function ShareModal({ sessionId, language, onClose }) {
     const t = useTranslation(language, 'cardSelection');
@@ -16,7 +17,7 @@ const ShareModal = memo(function ShareModal({ sessionId, language, onClose }) {
     }, [onClose]);
 
     const handleCopyLink = useCallback(() => {
-        const sessionLink = `${window.location.origin}?session=${sessionId}`;
+        const sessionLink = `${window.location.origin}${BASE_PATH}?session=${sessionId}`;
         navigator.clipboard.writeText(sessionLink);
         setLinkCopied(true);
         setTimeout(() => setLinkCopied(false), 2000);

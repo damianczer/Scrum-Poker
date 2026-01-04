@@ -109,6 +109,7 @@
   background: rgba(255, 107, 107, 0.1);
   border: 1px solid rgba(255, 107, 107, 0.3);
   margin-top: 8px;
+  margin-bottom: 16px;
 
   @include dark-theme {
     color: #ff8a8a;
