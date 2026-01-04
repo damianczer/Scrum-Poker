@@ -22,8 +22,7 @@ Estimate tasks easily with a beautiful, real-time React Application powered by F
 
 <img width="1903" height="900" alt="image" src="https://github.com/user-attachments/assets/4431745c-7841-4b3b-b8ee-3dfebd54a7d9" />
 
-<img width="1899" height="910" alt="image" src="https://github.com/user-attachments/assets/aa941bae-990e-47ef-9e4d-1af8142fb507" />
-
+<img width="1896" height="902" alt="image" src="https://github.com/user-attachments/assets/741c6b0e-cc1a-421f-8f4c-c12606ea63f3" />
 
 </div>
 
